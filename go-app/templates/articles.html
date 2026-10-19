@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Research Publication Platform</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/articles" class="nav-link active">Browse Articles</a>
+      <a href="/track" class="nav-link">Track Paper</a>
+      <a href="/guidelines" class="nav-link">Guidelines</a>
+      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
+        <span>🛡️</span> Admin Portal
+      </a>
+      <a href="/submit" class="nav-btn">Submit Article →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/articles" class="mobile-nav-link active">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
+    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <!-- ── Header Banner ── -->
+  <section class="hero" style="padding: 56px 20px 42px;">
+    <div class="hero-inner">
+      <h1 class="hero-title" style="font-size: 36px; margin-bottom: 10px;">Browse Published Articles</h1>
+      <p class="hero-subtitle" style="font-size: 15.5px; margin-bottom: 24px;">
+        {{ .Total }} peer-reviewed research papers published, DOI indexed, and freely accessible
+      </p>
+
+      <!-- Search Form -->
+      <form action="/articles" method="GET" class="search-form" style="margin-bottom: 0;">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            name="search"
+            class="search-input"
+            placeholder="Search by title, keywords, abstract, DOI, or author..."
+            value="{{ .Search }}"
+          >
+          {{ if .SelectedSubject }}
+          <input type="hidden" name="subject" value="{{ .SelectedSubject }}">
+          {{ end }}
+          <button type="submit" class="search-btn">Filter</button>
+          {{ if or .Search .SelectedSubject }}
+          <a href="/articles" style="padding: 10px 14px; font-size: 13px; color: #64748b; font-weight: 600; white-space: nowrap;">Reset</a>
+          {{ end }}
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Subject Filter Pills ── -->
+  <section style="background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 12px 20px;">
+    <div class="section-inner" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
+      <a href="/articles{{ if .Search }}?search={{ .Search }}{{ end }}"
+         style="padding: 6px 16px; border-radius: 999px; font-size: 12.5px; font-weight: 600; white-space: nowrap; border: 1px solid {{ if eq .SelectedSubject "" }}var(--primary){{ else }}var(--border-color){{ end }}; background: {{ if eq .SelectedSubject "" }}var(--primary){{ else }}#ffffff{{ end }}; color: {{ if eq .SelectedSubject "" }}#ffffff{{ else }}var(--text-body){{ end }};">
+        All Disciplines
+      </a>
+      {{ $currSearch := .Search }}
+      {{ $currSubj := .SelectedSubject }}
+      {{ range $sub := (slice "Artificial Intelligence" "Physics & Astronomy" "Economics & Finance" "Environmental Science" "Computer Science" "Medical Sciences") }}
+      <a href="/articles?subject={{ $sub }}{{ if $currSearch }}&search={{ $currSearch }}{{ end }}"
+         style="padding: 6px 16px; border-radius: 999px; font-size: 12.5px; font-weight: 600; white-space: nowrap; border: 1px solid {{ if eq $currSubj $sub }}var(--primary){{ else }}var(--border-color){{ end }}; background: {{ if eq $currSubj $sub }}var(--primary){{ else }}#ffffff{{ end }}; color: {{ if eq $currSubj $sub }}#ffffff{{ else }}var(--text-body){{ end }};">
+        {{ $sub }}
+      </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- ── Articles Grid ── -->
+  <section class="section">
+    <div class="section-inner">
+
+      {{ if not .Articles }}
+      <div style="text-align: center; padding: 60px 20px; background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+        <div style="font-size: 48px; margin-bottom: 14px;">📭</div>
+        <h3 style="font-size: 19px; font-weight: 700; color: var(--text-dark);">No Published Articles Found</h3>
+        <p style="color: var(--text-muted); font-size: 14px; margin: 8px auto 20px; max-width: 420px;">
+          {{ if .Search }}
+          No articles match your query "{{ .Search }}". Try clearing your search or keywords.
+          {{ else }}
+          No research articles are published in this category yet.
+          {{ end }}
+        </p>
+        <a href="/articles" class="btn-secondary" style="display: inline-block;">View All Articles</a>
+      </div>
+      {{ else }}
+
+      <div class="articles-grid">
+        {{ range .Articles }}
+        <div class="article-card">
+          <div class="article-meta">
+            <span class="badge badge-published">● Peer-Reviewed</span>
+            <span class="article-date">{{ formatDate .PublishedAt }}</span>
+          </div>
+
+          <div style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+            {{ if .SubjectArea }}
+            <span class="article-subject" style="margin-bottom: 0;">{{ .SubjectArea }}</span>
+            {{ end }}
+            {{ if .DOI }}
+            <span class="badge-doi">DOI: {{ .DOI }}</span>
+            {{ end }}
+          </div>
+
+          <h3 class="article-title">
+            <a href="/articles/{{ .ID }}" style="color: inherit;">{{ .Title }}</a>
+          </h3>
+
+          <p class="article-abstract">{{ .Abstract }}</p>
+
+          {{ $kws := splitKeywords .Keywords }}
+          {{ if $kws }}
+          <div class="keywords-wrap">
+            {{ range $kws }}
+            <span class="keyword-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            <div style="font-weight: 600; color: var(--text-dark);">👤 {{ .AuthorName }}</div>
+            {{ if .AuthorAffiliation }}
+            <div style="font-size: 11px; color: var(--text-light); margin-top: 2px;">{{ .AuthorAffiliation }}</div>
+            {{ end }}
+          </div>
+
+          <div class="article-footer">
+            <a href="/articles/{{ .ID }}" class="article-read-btn">Read Full Article →</a>
+            <a href="/articles/{{ .ID }}/download" class="section-link" style="font-size: 12px;" download>
+              📥 PDF
+            </a>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
+      {{ end }}
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer Reviewed • Fast Go Engine</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

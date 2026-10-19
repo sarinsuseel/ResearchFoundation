@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Research Publication Platform</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="nav-links">
+      <a href="/articles" class="nav-link">Browse Articles</a>
+      <a href="/track" class="nav-link">Track Paper</a>
+      <a href="/guidelines" class="nav-link">Guidelines</a>
+      <a href="/#about" class="nav-link">About Us</a>
+      <a href="/#scope" class="nav-link">Scope</a>
+      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
+        <span>🛡️</span> Admin Portal
+      </a>
+      <a href="/submit" class="nav-btn">Submit Article →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link active">Home</a>
+    <a href="/articles" class="mobile-nav-link">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
+    <a href="/#about" class="mobile-nav-link" onclick="toggleMobileNav()">About Us</a>
+    <a href="/#scope" class="mobile-nav-link" onclick="toggleMobileNav()">Scope</a>
+    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <!-- ── Hero Section ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🎓 Peer-Reviewed Open Access Scientific Journal</div>
+      <h1 class="hero-title">
+        Publish Your Research<br>
+        <span class="hero-accent">With Global Impact</span>
+      </h1>
+      <p class="hero-subtitle">
+        ASRF Research Platform provides a rigorous double-blind peer-review process and
+        instant open-access publishing for researchers worldwide across multidisciplinary fields.
+      </p>
+
+      <!-- Live Search Bar -->
+      <form action="/articles" method="GET" class="search-form">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            name="search"
+            class="search-input"
+            placeholder="Search papers by title, author, keyword, DOI..."
+            autocomplete="off"
+          >
+          <button type="submit" class="search-btn">Search</button>
+        </div>
+      </form>
+
+      <div class="hero-actions">
+        <a href="/submit" class="btn-hero-primary">Submit Your Article →</a>
+        <a href="/articles" class="btn-hero-secondary">Browse Published Articles</a>
+        <a href="/track" class="btn-hero-secondary" style="border-style: dashed;">Track Submission Status</a>
+      </div>
+
+      <!-- Live Stats -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-val">500+</div>
+          <div class="stat-lbl">Articles Published</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">1,200+</div>
+          <div class="stat-lbl">Registered Authors</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">48hrs</div>
+          <div class="stat-lbl">Avg. Review Time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Open Access</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trust Bar with Academic Registries ── -->
+  <section class="trust-bar">
+    <div class="trust-inner">
+      <span class="trust-item">✓ Crossref DOI Registered</span>
+      <span class="trust-item">✓ Google Scholar Indexed</span>
+      <span class="trust-item">✓ Double-Blind Peer Review</span>
+      <span class="trust-item">✓ ORCID Author Integration</span>
+      <span class="trust-item">✓ Plagiarism Checked (&lt;10%)</span>
+      <span class="trust-item">✓ Blazing Fast Go Engine</span>
+    </div>
+  </section>
+
+  <!-- ── Recently Published Articles ── -->
+  {{ if .RecentArticles }}
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Latest Research</div>
+          <h2 class="section-title">Recently Published Articles</h2>
+          <p class="section-subtitle">Discover peer-reviewed papers accepted by our editorial committee</p>
+        </div>
+        <a href="/articles" class="section-link">View all published articles →</a>
+      </div>
+
+      <div class="articles-grid">
+        {{ range .RecentArticles }}
+        <div class="article-card">
+          <div class="article-meta">
+            <span class="badge badge-published">● Peer-Reviewed</span>
+            <span class="article-date">{{ formatDate .PublishedAt }}</span>
+          </div>
+
+          <div style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+            {{ if .SubjectArea }}
+            <span class="article-subject" style="margin-bottom: 0;">{{ .SubjectArea }}</span>
+            {{ end }}
+            {{ if .DOI }}
+            <span class="badge-doi">DOI: {{ .DOI }}</span>
+            {{ end }}
+          </div>
+
+          <h3 class="article-title">
+            <a href="/articles/{{ .ID }}" style="color: inherit;">{{ .Title }}</a>
+          </h3>
+
+          <p class="article-abstract">{{ .Abstract }}</p>
+
+          {{ $kws := splitKeywords .Keywords }}
+          {{ if $kws }}
+          <div class="keywords-wrap">
+            {{ range $kws }}
+            <span class="keyword-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          <div class="article-footer">
+            <span class="article-author">👤 {{ .AuthorName }}</span>
+            <a href="/articles/{{ .ID }}" class="article-read-btn">Read paper →</a>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ── How It Works (4 Steps) ── -->
+  <section class="section section-alt" id="workflow">
+    <div class="section-inner">
+      <div class="section-header section-header-center">
+        <div class="section-tag">Submission Process</div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">From manuscript submission to global publication in four transparent steps</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-icon-box">📝</div>
+          <div class="step-num">Step 01</div>
+          <h3 class="step-title">Submit Manuscript</h3>
+          <p class="step-desc">Upload your research paper with title, abstract, keywords, and author details through our simple upload portal.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon-box">🔔</div>
+          <div class="step-num">Step 02</div>
+          <h3 class="step-title">Admin Review Alert</h3>
+          <p class="step-desc">An instant email alert notifies the editorial admin team to review and evaluate the manuscript.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon-box">🔍</div>
+          <div class="step-num">Step 03</div>
+          <h3 class="step-title">Editorial Acceptance</h3>
+          <p class="step-desc">Our domain experts perform peer evaluation and acceptance verification within 48–72 hours.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon-box">🌍</div>
+          <div class="step-num">Step 04</div>
+          <h3 class="step-title">Global Open Publication</h3>
+          <p class="step-desc">Upon approval, your research goes live worldwide for global indexing, citation, and free download.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Scope & Subject Areas ── -->
+  <section class="section" id="scope">
+    <div class="section-inner">
+      <div class="section-header section-header-center">
+        <div class="section-tag">Academic Disciplines</div>
+        <h2 class="section-title">Scope &amp; Subject Areas</h2>
+        <p class="section-subtitle">We publish research across a comprehensive spectrum of disciplines</p>
+      </div>
+
+      <div class="scope-grid">
+        <a href="/articles?subject=Computer+Science" class="scope-card">
+          <span class="scope-icon">💻</span>
+          <span class="scope-title">Computer Science</span>
+        </a>
+        <a href="/articles?subject=Artificial+Intelligence" class="scope-card">
+          <span class="scope-icon">🧠</span>
+          <span class="scope-title">Artificial Intelligence</span>
+        </a>
+        <a href="/articles?subject=Medical+Sciences" class="scope-card">
+          <span class="scope-icon">🏥</span>
+          <span class="scope-title">Medical Sciences</span>
+        </a>
+        <a href="/articles?subject=Physics+%26+Astronomy" class="scope-card">
+          <span class="scope-icon">🔭</span>
+          <span class="scope-title">Physics &amp; Astronomy</span>
+        </a>
+        <a href="/articles?subject=Economics+%26+Finance" class="scope-card">
+          <span class="scope-icon">💰</span>
+          <span class="scope-title">Economics &amp; Finance</span>
+        </a>
+        <a href="/articles?subject=Environmental+Science" class="scope-card">
+          <span class="scope-icon">🌿</span>
+          <span class="scope-title">Environmental Science</span>
+        </a>
+        <a href="/articles?subject=Chemistry" class="scope-card">
+          <span class="scope-icon">⚗️</span>
+          <span class="scope-title">Chemistry</span>
+        </a>
+        <a href="/articles?subject=Biology+%26+Life+Sciences" class="scope-card">
+          <span class="scope-icon">🧬</span>
+          <span class="scope-title">Biology &amp; Life Sciences</span>
+        </a>
+        <a href="/articles?subject=Electrical+Engineering" class="scope-card">
+          <span class="scope-icon">⚡</span>
+          <span class="scope-title">Electrical Engineering</span>
+        </a>
+        <a href="/articles?subject=Civil+Engineering" class="scope-card">
+          <span class="scope-icon">🏗️</span>
+          <span class="scope-title">Civil Engineering</span>
+        </a>
+        <a href="/articles?subject=Mathematics" class="scope-card">
+          <span class="scope-icon">📐</span>
+          <span class="scope-title">Mathematics</span>
+        </a>
+        <a href="/articles?subject=Social+Sciences" class="scope-card">
+          <span class="scope-icon">📚</span>
+          <span class="scope-title">Social Sciences</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Choose ASRF ── -->
+  <section class="section section-alt" id="about">
+    <div class="section-inner">
+      <div class="section-header section-header-center">
+        <div class="section-tag">About The Foundation</div>
+        <h2 class="section-title">Why Choose ASRF?</h2>
+        <p class="section-subtitle">Built specifically for researchers who demand speed, integrity, and global reach</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Rapid Peer Review</h3>
+          <p class="feature-desc">Receive editorial feedback within 48–72 hours by dedicated domain specialists, eliminating months of waiting.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3 class="feature-title">100% Open Access</h3>
+          <p class="feature-desc">Your research is freely available to students, academics, and industry innovators worldwide, maximizing citation index.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">High Speed &amp; Reliability</h3>
+          <p class="feature-desc">Powered by high-performance compiled Go technology for instant search, download speeds, and 99.99% uptime.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📧</div>
+          <h3 class="feature-title">Automated Admin Alerts</h3>
+          <p class="feature-desc">Every manuscript submission triggers automated notification to the admin board for immediate tracking and review.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📑</div>
+          <h3 class="feature-title">DOI &amp; Citation Ready</h3>
+          <p class="feature-desc">Articles receive standard academic metadata formatting with support for APA, IEEE, and BibTeX citation export.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Plagiarism Checked</h3>
+          <p class="feature-desc">Stringent originality checks ensure that published content meets the highest ethical research benchmarks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ready to Submit CTA ── -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="guidelines-cta">
+        <div class="guidelines-left">
+          <h2 class="guidelines-title">Ready to Publish Your Research?</h2>
+          <p class="guidelines-desc">
+            Submit your manuscript today. Our editorial board reviews submissions on a rolling basis with fast-track editorial acceptance.
+          </p>
+        </div>
+        <div class="guidelines-actions">
+          <a href="/guidelines" class="btn-outline-white">Read Guidelines</a>
+          <a href="/submit" class="btn-white">Start Submission →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/static/images/logo.png" alt="ASRF" class="footer-logo">
+          <div>
+            <div class="footer-brand-name">Analize Statistice Research Foundation</div>
+            <div class="footer-brand-tagline">Advancing Science Through Open Access Publishing</div>
+          </div>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-col-title">Platform</div>
+            <a href="/articles" class="footer-link">Browse Articles</a>
+            <a href="/submit" class="footer-link">Submit Article</a>
+            <a href="/track" class="footer-link">Track Paper Status</a>
+            <a href="/admin" class="footer-link">Admin Portal</a>
+          </div>
+          <div>
+            <div class="footer-col-title">Foundation</div>
+            <a href="/guidelines" class="footer-link">Author Guidelines</a>
+            <a href="/#about" class="footer-link">About ASRF</a>
+            <a href="/#scope" class="footer-link">Subject Areas</a>
+            <a href="/#workflow" class="footer-link">Publication Workflow</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer Reviewed • Fast Go Architecture</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

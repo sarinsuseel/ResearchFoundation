@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Research Publication Platform</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/articles" class="nav-link active">Browse Articles</a>
+      <a href="/track" class="nav-link">Track Paper</a>
+      <a href="/guidelines" class="nav-link">Author Guidelines</a>
+      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
+        <span>🛡️</span> Admin Portal
+      </a>
+      <a href="/submit" class="nav-btn">Submit Article →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/articles" class="mobile-nav-link active">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
+    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <div style="background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 20px;">
+    <div style="max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <a href="/articles" style="font-size: 13.5px; color: var(--primary); font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+        ← Back to Published Articles
+      </a>
+      <div style="display: flex; gap: 8px;">
+        {{ if .Article.RefCode }}
+        <span class="badge-ref">Ref: {{ .Article.RefCode }}</span>
+        {{ end }}
+        {{ if .Article.DOI }}
+        <span class="badge-doi">DOI: {{ .Article.DOI }}</span>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <main style="max-width: 960px; margin: 36px auto; padding: 0 24px;">
+    <article class="card">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;">
+        <span class="badge badge-published">● Peer-Reviewed &amp; Published</span>
+        {{ if .Article.PaperType }}
+        <span class="badge" style="background: #e0e7ff; color: #3730a3;">{{ .Article.PaperType }}</span>
+        {{ end }}
+        {{ if .Article.SubjectArea }}
+        <span class="article-subject" style="margin-bottom: 0;">{{ .Article.SubjectArea }}</span>
+        {{ end }}
+        <span style="font-size: 13px; color: var(--text-muted); margin-left: auto;">
+          Published: {{ formatDate .Article.PublishedAt }}
+        </span>
+      </div>
+
+      <h1 style="font-size: 32px; font-weight: 800; color: var(--text-dark); line-height: 1.35; margin-bottom: 22px;">
+        {{ .Article.Title }}
+      </h1>
+
+      <!-- Author Bio & Affiliations Box -->
+      <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; margin-bottom: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <div style="font-size: 17px; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 8px;">
+              👤 {{ .Article.AuthorName }}
+              {{ if .Article.ORCID }}
+              <a href="https://orcid.org/{{ .Article.ORCID }}" target="_blank" title="Verified ORCID iD" style="display: inline-flex; align-items: center; background: #a6ce39; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; text-decoration: none;">
+                ORCID: {{ .Article.ORCID }}
+              </a>
+              {{ end }}
+            </div>
+            
+            {{ if .Article.CoAuthors }}
+            <div style="font-size: 13px; color: var(--text-body); margin-top: 4px;">
+              <strong>Co-Authors:</strong> {{ .Article.CoAuthors }}
+            </div>
+            {{ end }}
+
+            {{ if .Article.AuthorAffiliation }}
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+              🏛️ {{ .Article.AuthorAffiliation }}
+            </div>
+            {{ end }}
+
+            <div style="font-size: 13px; color: var(--primary); margin-top: 4px;">
+              ✉️ Corresponding Author: <a href="mailto:{{ .Article.AuthorEmail }}">{{ .Article.AuthorEmail }}</a>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="openPdfModal('{{ .Article.FileURL }}')" class="btn-secondary" style="padding: 10px 18px; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px;">
+              <span>📖</span> Read Online
+            </button>
+            <a href="/articles/{{ .Article.ID }}/download" class="btn-primary" style="width: auto; padding: 10px 20px; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;" download>
+              <span>📥</span> Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abstract Section -->
+      <section style="margin-bottom: 32px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; border-bottom: 2px solid var(--primary-subtle); padding-bottom: 8px;">
+          Abstract
+        </h2>
+        <p style="font-size: 15.5px; line-height: 1.85; color: var(--text-body); text-align: justify;">
+          {{ .Article.Abstract }}
+        </p>
+      </section>
+
+      <!-- Keywords Section -->
+      {{ $kws := splitKeywords .Article.Keywords }}
+      {{ if $kws }}
+      <section style="margin-bottom: 36px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">
+          Keywords:
+        </h3>
+        <div class="keywords-wrap">
+          {{ range $kws }}
+          <span class="keyword-tag" style="font-size: 12.5px; padding: 5px 12px;">{{ . }}</span>
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
+
+      <!-- Interactive 1-Click Citation Generator -->
+      <section class="citation-box">
+        <div style="padding: 14px 20px; background: #ffffff; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 13.5px; font-weight: 700; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.5px;">
+            📑 Cite This Article
+          </span>
+          <button onclick="copyCitation()" id="copyCiteBtn" class="btn-secondary" style="padding: 6px 14px; font-size: 12px;">
+            📋 Copy Citation
+          </button>
+        </div>
+
+        <div class="citation-tabs">
+          <button class="citation-tab active" onclick="switchCitation('apa', this)">APA</button>
+          <button class="citation-tab" onclick="switchCitation('ieee', this)">IEEE</button>
+          <button class="citation-tab" onclick="switchCitation('bibtex', this)">BibTeX</button>
+          <button class="citation-tab" onclick="switchCitation('harvard', this)">Harvard</button>
+        </div>
+
+        <div class="citation-content" id="citationText">
+          {{ .Article.AuthorName }} ({{ formatDate .Article.PublishedAt }}). {{ .Article.Title }}. <em>Analize Statistice Research Foundation Journal</em>. https://doi.org/{{ .Article.DOI }}
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- ── In-Browser PDF Viewer Modal ── -->
+  <div class="modal-overlay" id="pdfModal" onclick="closePdfModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">📄 Manuscript In-Browser Reader: {{ .Article.FileName }}</span>
+        <button class="modal-close" onclick="closePdfModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdfIframe" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer Reviewed • Fast Go Engine</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const author = {{ .Article.AuthorName }};
+    const title = {{ .Article.Title }};
+    const date = {{ formatDate .Article.PublishedAt }};
+    const doi = {{ .Article.DOI }};
+    const ref = {{ .Article.RefCode }};
+
+    const citations = {
+      apa: author + " (" + date + "). " + title + ". Analize Statistice Research Foundation Journal. https://doi.org/" + doi,
+      ieee: author + ', "' + title + '," Analize Statistice Research Foundation Journal, ' + date + '. doi: ' + doi + '.',
+      bibtex: '@article{' + ref + ',\n  author = {' + author + '},\n  title = {' + title + '},\n  journal = {ASRF Research Journal},\n  year = {2026},\n  doi = {' + doi + '}\n}',
+      harvard: author + ', 2026. ' + title + '. Analize Statistice Research Foundation Journal, [online] Available at: <https://doi.org/' + doi + '>.'
+    };
+
+    let activeCiteFormat = 'apa';
+
+    function switchCitation(format, btn) {
+      activeCiteFormat = format;
+      document.querySelectorAll('.citation-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('citationText').textContent = citations[format];
+    }
+
+    function copyCitation() {
+      const text = document.getElementById('citationText').textContent;
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copyCiteBtn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy Citation', 2000);
+    }
+
+    function openPdfModal(fileUrl) {
+      document.getElementById('pdfIframe').src = fileUrl;
+      document.getElementById('pdfModal').classList.add('active');
+    }
+
+    function closePdfModal() {
+      document.getElementById('pdfModal').classList.remove('active');
+      document.getElementById('pdfIframe').src = '';
+    }
+  </script>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

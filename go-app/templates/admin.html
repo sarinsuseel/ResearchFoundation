@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Editorial Administration &amp; Review System</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/articles" class="nav-link">Published Articles</a>
+      <a href="/track" class="nav-link">Track Paper</a>
+      <a href="/submit" class="nav-link">Submit Page</a>
+      <span class="badge" style="background: #1B3A6B; color: #ffffff; padding: 6px 14px; font-size: 12px;">Admin Mode</span>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/articles" class="mobile-nav-link">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
+    <a href="/admin" class="mobile-nav-link active">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <main style="max-width: 1180px; margin: 40px auto; padding: 0 24px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h1 style="font-size: 28px; font-weight: 800; color: var(--text-dark);">
+          Editorial Review &amp; Acceptance Portal
+        </h1>
+        <p style="color: var(--text-muted); font-size: 14px;">
+          Review incoming manuscripts submitted by researchers, preview drafts in-browser, and issue editorial acceptance.
+        </p>
+      </div>
+
+      <!-- Quick status filter buttons -->
+      <div style="display: flex; gap: 8px;">
+        <a href="/admin?status=ALL"
+           style="padding: 7px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); background: {{ if eq .SelectedStatus "ALL" }}var(--primary){{ else }}#ffffff{{ end }}; color: {{ if eq .SelectedStatus "ALL" }}#ffffff{{ else }}var(--text-body){{ end }};">
+          All ({{ .Stats.TotalArticles }})
+        </a>
+        <a href="/admin?status=PENDING"
+           style="padding: 7px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); background: {{ if eq .SelectedStatus "PENDING" }}var(--primary){{ else }}#ffffff{{ end }}; color: {{ if eq .SelectedStatus "PENDING" }}#ffffff{{ else }}var(--text-body){{ end }};">
+          Pending Review ({{ .Stats.PendingCount }})
+        </a>
+        <a href="/admin?status=PUBLISHED"
+           style="padding: 7px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); background: {{ if eq .SelectedStatus "PUBLISHED" }}var(--primary){{ else }}#ffffff{{ end }}; color: {{ if eq .SelectedStatus "PUBLISHED" }}#ffffff{{ else }}var(--text-body){{ end }};">
+          Published ({{ .Stats.PublishedCount }})
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid-4">
+      <div class="stat-box">
+        <div class="stat-box-val" style="color: #d97706;">{{ .Stats.PendingCount }}</div>
+        <div class="stat-box-lbl">Pending Review</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-val" style="color: var(--primary);">{{ .Stats.PublishedCount }}</div>
+        <div class="stat-box-lbl">Published Papers</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-val">{{ .Stats.RegisteredAuthors }}</div>
+        <div class="stat-box-lbl">Contributing Authors</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-val">{{ .Stats.TotalArticles }}</div>
+        <div class="stat-box-lbl">Total Manuscripts</div>
+      </div>
+    </div>
+
+    <!-- Alert Message -->
+    <div id="adminNotice" class="alert" style="display: none;"></div>
+
+    <!-- Submissions Table Card -->
+    <div class="table-card">
+      <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date &amp; Ref Code</th>
+            <th>Title &amp; Subject</th>
+            <th>Author Details</th>
+            <th>Status</th>
+            <th>Manuscript File</th>
+            <th style="text-align: right;">Editorial Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ if not .Submissions }}
+          <tr>
+            <td colspan="6" style="text-align: center; padding: 48px; color: var(--text-muted);">
+              No submissions found for the selected status filter.
+            </td>
+          </tr>
+          {{ else }}
+          {{ range .Submissions }}
+          <tr id="row-{{ .ID }}">
+            <td style="white-space: nowrap;">
+              <div style="font-weight: 600; font-size: 13px;">{{ formatTime .CreatedAt }}</div>
+              {{ if .RefCode }}
+              <span class="badge-ref" style="font-size: 10.5px; margin-top: 3px; display: inline-block;">{{ .RefCode }}</span>
+              {{ else }}
+              <div style="font-size: 11px; color: var(--text-light); font-family: monospace;">{{ truncate .ID 12 }}</div>
+              {{ end }}
+            </td>
+
+            <td style="max-width: 340px;">
+              <div style="font-weight: 700; color: var(--text-dark); font-size: 14px; margin-bottom: 4px;">
+                {{ .Title }}
+              </div>
+              <div style="display: flex; gap: 6px; margin-bottom: 4px;">
+                {{ if .SubjectArea }}
+                <span class="article-subject" style="font-size: 10px; margin-bottom: 0;">{{ .SubjectArea }}</span>
+                {{ end }}
+                {{ if .PaperType }}
+                <span class="badge" style="background: #f1f5f9; color: #475569; font-size: 10px;">{{ .PaperType }}</span>
+                {{ end }}
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                {{ .Abstract }}
+              </div>
+            </td>
+
+            <td>
+              <div style="font-weight: 600; color: var(--text-dark);">{{ .AuthorName }}</div>
+              <div style="font-size: 12px; color: var(--primary);">{{ .AuthorEmail }}</div>
+              {{ if .AuthorAffiliation }}
+              <div style="font-size: 11px; color: var(--text-light);">{{ .AuthorAffiliation }}</div>
+              {{ end }}
+              {{ if .ORCID }}
+              <div style="font-size: 10.5px; color: #65a30d;">ORCID: {{ .ORCID }}</div>
+              {{ end }}
+            </td>
+
+            <td>
+              {{ if eq .Status "PUBLISHED" }}
+              <span class="badge badge-published">PUBLISHED</span>
+              {{ else if eq .Status "PENDING" }}
+              <span class="badge badge-pending">PENDING</span>
+              {{ else if eq .Status "REJECTED" }}
+              <span class="badge badge-rejected">REJECTED</span>
+              {{ else }}
+              <span class="badge">{{ .Status }}</span>
+              {{ end }}
+            </td>
+
+            <td>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <button type="button" onclick="previewPdf('{{ .FileURL }}', '{{ .FileName }}')" class="btn-secondary" style="padding: 4px 10px; font-size: 11.5px; width: auto; text-align: left;">
+                  👁️ Preview PDF
+                </button>
+                <a href="{{ .FileURL }}" class="section-link" style="font-size: 11.5px;" download>
+                  📥 Download
+                </a>
+              </div>
+            </td>
+
+            <td style="text-align: right; white-space: nowrap;">
+              {{ if eq .Status "PENDING" }}
+              <button onclick="approveArticle('{{ .ID }}')" class="btn-success" id="btn-approve-{{ .ID }}">
+                ✓ Accept &amp; Publish
+              </button>
+              <button onclick="rejectArticlePrompt('{{ .ID }}')" class="btn-danger" style="margin-left: 6px;">
+                ✕ Reject
+              </button>
+              {{ else if eq .Status "PUBLISHED" }}
+              <a href="/articles/{{ .ID }}" class="btn-secondary" style="padding: 6px 12px; font-size: 12px;" target="_blank">
+                View Paper ↗
+              </a>
+              {{ else }}
+              <span style="font-size: 12px; color: var(--text-light);">Archived</span>
+              {{ end }}
+            </td>
+          </tr>
+          {{ end }}
+          {{ end }}
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── In-Browser PDF Viewer Modal ── -->
+  <div class="modal-overlay" id="adminPdfModal" onclick="closeAdminPdfModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title" id="adminPdfTitle">📄 Manuscript Reviewer</span>
+        <button class="modal-close" onclick="closeAdminPdfModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="adminPdfIframe" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function previewPdf(fileUrl, filename) {
+      document.getElementById('adminPdfTitle').textContent = '📄 Reviewing: ' + filename;
+      document.getElementById('adminPdfIframe').src = fileUrl;
+      document.getElementById('adminPdfModal').classList.add('active');
+    }
+
+    function closeAdminPdfModal() {
+      document.getElementById('adminPdfModal').classList.remove('active');
+      document.getElementById('adminPdfIframe').src = '';
+    }
+
+    async function approveArticle(id) {
+      const btn = document.getElementById('btn-approve-' + id);
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Accepting...';
+      }
+
+      try {
+        const response = await fetch('/api/admin/submissions/' + id + '/approve', {
+          method: 'POST'
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          showAdminNotice('Article approved and published live! Notification email sent to author.', 'success');
+          setTimeout(() => window.location.reload(), 1200);
+        } else {
+          showAdminNotice(data.error || 'Approval failed.', 'error');
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = '✓ Accept & Publish';
+          }
+        }
+      } catch (err) {
+        showAdminNotice('Network error: ' + err.message, 'error');
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '✓ Accept & Publish';
+        }
+      }
+    }
+
+    async function rejectArticlePrompt(id) {
+      const reason = prompt('Please specify rejection feedback reason for author:');
+      if (reason === null) return;
+
+      try {
+        const response = await fetch('/api/admin/submissions/' + id + '/reject', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reason: reason })
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          showAdminNotice('Article marked as rejected.', 'info');
+          setTimeout(() => window.location.reload(), 1000);
+        } else {
+          showAdminNotice(data.error || 'Action failed.', 'error');
+        }
+      } catch (err) {
+        showAdminNotice('Error: ' + err.message, 'error');
+      }
+    }
+
+    function showAdminNotice(msg, type) {
+      const notice = document.getElementById('adminNotice');
+      notice.textContent = msg;
+      notice.className = 'alert ' + (type === 'success' ? 'alert-success' : type === 'error' ? 'alert-error' : 'alert-info');
+      notice.style.display = 'block';
+    }
+  </script>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

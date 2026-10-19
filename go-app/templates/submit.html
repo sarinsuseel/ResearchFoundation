@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Manuscript Submission &amp; Review System</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/articles" class="nav-link">Browse Articles</a>
+      <a href="/track" class="nav-link">Track Paper</a>
+      <a href="/guidelines" class="nav-link">Author Guidelines</a>
+      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
+        <span>🛡️</span> Admin Portal
+      </a>
+      <a href="/submit" class="nav-btn">Submit Article →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/articles" class="mobile-nav-link">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
+    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <main style="max-width: 820px; margin: 32px auto; padding: 0 16px;">
+
+    <!-- Page Header -->
+    <div style="margin-bottom: 20px;">
+      <a href="/" style="font-size: 13.5px; color: var(--primary); font-weight: 600;">← Back to Home</a>
+      <h1 style="font-size: 28px; font-weight: 800; color: var(--text-dark); margin: 6px 0;">
+        Manuscript Submission Portal
+      </h1>
+      <p style="color: var(--text-muted); font-size: 14.5px;">
+        Submit your research paper for fast-track peer review. Instant administrative notification and automated tracking code generated upon submission.
+      </p>
+    </div>
+
+    <!-- Stepper Navigation Header -->
+    <div class="stepper-header" id="stepperNav">
+      <div class="stepper-step active" id="stepIndicator1" onclick="goToStep(1)">
+        <div class="step-circle" id="circle1">1</div>
+        <div class="step-label">Author Credentials</div>
+      </div>
+      <div class="stepper-step" id="stepIndicator2" onclick="goToStep(2)">
+        <div class="step-circle" id="circle2">2</div>
+        <div class="step-label">Manuscript Info</div>
+      </div>
+      <div class="stepper-step" id="stepIndicator3" onclick="goToStep(3)">
+        <div class="step-circle" id="circle3">3</div>
+        <div class="step-label">Abstract &amp; Scope</div>
+      </div>
+      <div class="stepper-step" id="stepIndicator4" onclick="goToStep(4)">
+        <div class="step-circle" id="circle4">4</div>
+        <div class="step-label">File &amp; Declaration</div>
+      </div>
+    </div>
+
+    <!-- Alert / Notice Box -->
+    <div id="statusAlert" style="display: none;" class="alert"></div>
+
+    <!-- Form Wizard -->
+    <form id="submissionForm" enctype="multipart/form-data">
+
+      <!-- ================= STEP 1: Author Credentials ================= -->
+      <div class="wizard-panel active" id="panel1">
+        <div class="card">
+          <div class="form-header">
+            <h2 class="form-header-title">Step 1: Primary Corresponding Author</h2>
+            <p class="form-header-desc">Enter verified scientific author details for correspondence and publication credits</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="author_name">Full Name (with Academic Title) *</label>
+            <input type="text" id="author_name" name="author_name" class="form-input" placeholder="e.g. Dr. Rajesh V. Ramanathan, Ph.D." required>
+          </div>
+
+          <div class="form-group form-grid-2">
+            <div>
+              <label class="form-label" for="author_email">Corresponding Email Address *</label>
+              <input type="email" id="author_email" name="author_email" class="form-input" placeholder="e.g. author@institution.edu" required>
+            </div>
+            <div>
+              <label class="form-label" for="orcid">
+                ORCID iD
+                <span class="form-label-optional">(optional)</span>
+              </label>
+              <input type="text" id="orcid" name="orcid" class="form-input" placeholder="e.g. 0000-0002-1825-4421">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="author_affiliation">Institutional Affiliation / University *</label>
+            <input type="text" id="author_affiliation" name="author_affiliation" class="form-input" placeholder="e.g. Department of Biomedical Engineering, Indian Institute of Technology" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="co_authors">
+              Co-Authors Names &amp; Institutions
+              <span class="form-label-optional">(optional, comma-separated)</span>
+            </label>
+            <input type="text" id="co_authors" name="co_authors" class="form-input" placeholder="e.g. Prof. Meera K. Swaminathan (IITB), Dr. Marcus Wright (MIT)">
+            <span style="font-size: 12px; color: var(--text-light); margin-top: 4px; display: block;">
+              Separate multiple co-authors with commas.
+            </span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+          <button type="button" class="btn-primary" style="width: auto; padding: 13px 32px;" onclick="validateStep1()">
+            Next: Manuscript Metadata →
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 2: Manuscript Categorization ================= -->
+      <div class="wizard-panel" id="panel2">
+        <div class="card">
+          <div class="form-header">
+            <h2 class="form-header-title">Step 2: Manuscript Classification &amp; Title</h2>
+            <p class="form-header-desc">Specify your research category and primary paper title</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Research Paper Type *</label>
+            <div class="radio-cards-grid">
+              <label class="radio-card selected" id="card_type_1" onclick="selectPaperType('Original Research', 'card_type_1')">
+                <input type="radio" name="paper_type" value="Original Research" checked>
+                📄 Original Research
+              </label>
+              <label class="radio-card" id="card_type_2" onclick="selectPaperType('Review Paper', 'card_type_2')">
+                <input type="radio" name="paper_type" value="Review Paper">
+                📚 Review Paper
+              </label>
+              <label class="radio-card" id="card_type_3" onclick="selectPaperType('Case Study', 'card_type_3')">
+                <input type="radio" name="paper_type" value="Case Study">
+                🔬 Case Study
+              </label>
+              <label class="radio-card" id="card_type_4" onclick="selectPaperType('Short Communication', 'card_type_4')">
+                <input type="radio" name="paper_type" value="Short Communication">
+                ⚡ Short Communication
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="title">Full Article Title *</label>
+            <input type="text" id="title" name="title" class="form-input" placeholder="e.g. Scalable Quantum Key Distribution Protocols Over Terrestrial Free-Space Channels" required>
+            <span style="font-size: 12px; color: var(--text-light); margin-top: 4px; display: block;">
+              Avoid abbreviations in the main title. Recommended length: 10–25 words.
+            </span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="subject_area">Primary Academic Discipline *</label>
+            <select id="subject_area" name="subject_area" class="form-select" required>
+              <option value="" disabled selected>Select primary academic field</option>
+              <option value="Artificial Intelligence">Artificial Intelligence &amp; Machine Learning</option>
+              <option value="Computer Science">Computer Science &amp; IT</option>
+              <option value="Medical Sciences">Medical Sciences &amp; Healthcare</option>
+              <option value="Physics &amp; Astronomy">Physics &amp; Astronomy</option>
+              <option value="Economics &amp; Finance">Economics &amp; Quantitative Finance</option>
+              <option value="Environmental Science">Environmental Science &amp; Clean Tech</option>
+              <option value="Chemistry">Chemistry &amp; Chemical Engineering</option>
+              <option value="Biology &amp; Life Sciences">Biology &amp; Life Sciences</option>
+              <option value="Electrical Engineering">Electrical &amp; Electronic Engineering</option>
+              <option value="Civil Engineering">Civil &amp; Structural Engineering</option>
+              <option value="Mathematics">Mathematics &amp; Statistics</option>
+              <option value="Social Sciences">Social Sciences &amp; Humanities</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; gap: 12px;">
+          <button type="button" class="btn-secondary" style="width: auto; padding: 13px 24px;" onclick="goToStep(1)">
+            ← Previous
+          </button>
+          <button type="button" class="btn-primary" style="width: auto; padding: 13px 28px;" onclick="validateStep2()">
+            Next: Abstract &amp; Scope →
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 3: Abstract & Scope ================= -->
+      <div class="wizard-panel" id="panel3">
+        <div class="card">
+          <div class="form-header">
+            <h2 class="form-header-title">Step 3: Abstract Summary &amp; Indexing Keywords</h2>
+            <p class="form-header-desc">Summarize your objectives, methodology, and empirical findings</p>
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+              <label class="form-label" for="abstract" style="margin-bottom: 0;">Manuscript Abstract *</label>
+              <span id="wordCountBadge" class="word-count-badge">0 words (150–300 recommended)</span>
+            </div>
+            <textarea id="abstract" name="abstract" class="form-textarea" style="min-height: 160px;" placeholder="Provide a structured summary of: (1) Background &amp; Problem, (2) Methodology, (3) Key Results, and (4) Scholarly Conclusion..." required oninput="updateWordCount()"></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="keywords">
+              Keywords
+              <span class="form-label-optional">(3 to 6 keywords separated by comma) *</span>
+            </label>
+            <input type="text" id="keywords" name="keywords" class="form-input" placeholder="e.g. Deep Learning, Medical Imaging, Transformers, Segmentation" required>
+            <span style="font-size: 12px; color: var(--text-light); margin-top: 4px; display: block;">
+              These keywords will be used for CrossRef indexing and search discovery.
+            </span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; gap: 12px;">
+          <button type="button" class="btn-secondary" style="width: auto; padding: 13px 24px;" onclick="goToStep(2)">
+            ← Previous
+          </button>
+          <button type="button" class="btn-primary" style="width: auto; padding: 13px 28px;" onclick="validateStep3()">
+            Next: File Upload &amp; Review →
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 4: Manuscript File Upload & Declarations ================= -->
+      <div class="wizard-panel" id="panel4">
+        <div class="card">
+          <div class="form-header">
+            <h2 class="form-header-title">Step 4: Manuscript File Upload &amp; Ethical Declaration</h2>
+            <p class="form-header-desc">Upload your complete paper in PDF or Word format</p>
+          </div>
+
+          <input type="file" id="fileInput" name="file" accept=".pdf,.doc,.docx" style="display: none;" required>
+
+          <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+            <div class="dropzone-icon">📑</div>
+            <div class="dropzone-title">Click to browse or drop manuscript file here</div>
+            <div class="dropzone-desc">Accepted formats: PDF (.pdf) or Microsoft Word (.doc, .docx) — Max size: 10MB</div>
+            <div id="fileSelectedDisplay" style="display: none;" class="dropzone-file-selected">
+              <span>📄</span>
+              <span id="fileSelectedName">manuscript.pdf</span>
+              <button type="button" onclick="clearFile(event)" style="background: none; border: none; cursor: pointer; color: #dc2626; font-size: 15px; margin-left: 6px;">✕</button>
+            </div>
+          </div>
+
+          <!-- Ethical Checkboxes -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; margin-top: 20px;">
+            <div style="font-weight: 700; font-size: 13.5px; color: var(--text-dark); margin-bottom: 10px;">Author Warranties &amp; Declarations</div>
+
+            <label style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; cursor: pointer; font-size: 12.5px; color: var(--text-body);">
+              <input type="checkbox" id="checkOriginal" required style="margin-top: 3px;">
+              <span><strong>Originality:</strong> I certify that this manuscript is our original work, has not been plagiarized, and is not submitted elsewhere.</span>
+            </label>
+
+            <label style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; cursor: pointer; font-size: 12.5px; color: var(--text-body);">
+              <input type="checkbox" id="checkCoAuthors" required style="margin-top: 3px;">
+              <span><strong>Co-Author Consent:</strong> All listed authors have reviewed and approved this version of the manuscript and agreed to its submission.</span>
+            </label>
+
+            <label style="display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 12.5px; color: var(--text-body);">
+              <input type="checkbox" id="checkOpenAccess" required style="margin-top: 3px;">
+              <span><strong>Open Access License:</strong> If accepted, the paper will be published under Creative Commons Open Access (CC-BY 4.0) licensing.</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <button type="button" class="btn-secondary" style="width: auto; padding: 13px 24px;" onclick="goToStep(3)">
+            ← Previous
+          </button>
+          <button type="submit" id="submitBtn" class="btn-primary" style="width: auto; padding: 13px 32px; font-size: 14.5px;">
+            🚀 Submit Manuscript for Peer Review
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Success Screen (Shown upon submission) -->
+    <div id="successCard" class="card" style="display: none; text-align: center; padding: 36px 20px;">
+      <div style="font-size: 52px; margin-bottom: 14px;">🎉</div>
+      <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 8px;">
+        Manuscript Successfully Submitted!
+      </h2>
+      <p style="font-size: 14.5px; color: var(--text-body); max-width: 540px; margin: 0 auto 20px; line-height: 1.6;">
+        Your research has been recorded in the ASRF editorial database. An automated notification email has been dispatched to the <strong>Admin Review Board</strong>.
+      </p>
+
+      <!-- Reference Code Highlight Box -->
+      <div style="background: #f0fdf4; border: 2px dashed #86efac; border-radius: var(--radius-lg); padding: 20px; max-width: 500px; margin: 0 auto 24px;">
+        <div style="font-size: 11.5px; font-weight: 700; color: #166534; text-transform: uppercase; letter-spacing: 1px;">
+          Your Manuscript Tracking Reference
+        </div>
+        <div style="font-size: 28px; font-weight: 800; color: var(--primary); font-family: monospace; margin: 6px 0;" id="successRefCode">
+          ASRF-2026-XXXX
+        </div>
+        <p style="font-size: 12px; color: #475569; margin-bottom: 10px;">
+          Please save this reference code. You can use it to track your peer review status anytime.
+        </p>
+        <button type="button" onclick="copyRefCode()" id="copyRefBtn" class="btn-secondary" style="padding: 7px 16px; font-size: 12.5px;">
+          📋 Copy Reference Code
+        </button>
+      </div>
+
+      <div style="background: var(--primary-subtle); border-radius: var(--radius-md); padding: 16px; max-width: 500px; margin: 0 auto 28px; text-align: left; font-size: 13px;">
+        <div style="margin-bottom: 6px;"><strong>Article Title:</strong> <span id="successTitle"></span></div>
+        <div style="margin-bottom: 6px;"><strong>Status:</strong> <span class="badge badge-pending">PENDING EDITORIAL REVIEW</span></div>
+        <div><strong>Expected Review Turnaround:</strong> 48–72 hours</div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a id="trackLinkBtn" href="/track" class="btn-primary" style="width: auto; padding: 11px 22px; font-size: 13.5px;">
+          🔍 Track Paper Status Now
+        </a>
+        <a href="/articles" class="btn-secondary" style="padding: 11px 22px; font-size: 13.5px;">
+          Browse Published Papers
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer Reviewed • Fast Go Engine</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+  <!-- ── Wizard Controller Script ── -->
+  <script>
+    let currentStep = 1;
+
+    function goToStep(step) {
+      if (step < 1 || step > 4) return;
+      
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('panel' + i).classList.remove('active');
+        document.getElementById('stepIndicator' + i).classList.remove('active');
+      }
+      document.getElementById('panel' + step).classList.add('active');
+      document.getElementById('stepIndicator' + step).classList.add('active');
+
+      for (let i = 1; i < step; i++) {
+        document.getElementById('stepIndicator' + i).classList.add('completed');
+        document.getElementById('circle' + i).textContent = '✓';
+      }
+      for (let i = step; i <= 4; i++) {
+        document.getElementById('stepIndicator' + i).classList.remove('completed');
+        document.getElementById('circle' + i).textContent = i;
+      }
+
+      currentStep = step;
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+
+    function validateStep1() {
+      const name = document.getElementById('author_name').value.trim();
+      const email = document.getElementById('author_email').value.trim();
+      const aff = document.getElementById('author_affiliation').value.trim();
+
+      if (!name || !email || !aff) {
+        showAlert('Please provide author full name, email, and affiliation.', 'error');
+        return;
+      }
+      if (!email.includes('@') || !email.includes('.')) {
+        showAlert('Please provide a valid email address.', 'error');
+        return;
+      }
+      hideAlert();
+      goToStep(2);
+    }
+
+    function validateStep2() {
+      const title = document.getElementById('title').value.trim();
+      const subject = document.getElementById('subject_area').value;
+
+      if (!title) {
+        showAlert('Please enter the full article title.', 'error');
+        return;
+      }
+      if (!subject) {
+        showAlert('Please select the primary academic discipline.', 'error');
+        return;
+      }
+      hideAlert();
+      goToStep(3);
+    }
+
+    function validateStep3() {
+      const abstract = document.getElementById('abstract').value.trim();
+      const keywords = document.getElementById('keywords').value.trim();
+
+      if (!abstract) {
+        showAlert('Please provide your manuscript abstract.', 'error');
+        return;
+      }
+      if (abstract.split(/\s+/).length < 20) {
+        showAlert('Abstract should be at least 20 words.', 'error');
+        return;
+      }
+      if (!keywords) {
+        showAlert('Please provide at least 2 to 3 indexing keywords.', 'error');
+        return;
+      }
+      hideAlert();
+      goToStep(4);
+    }
+
+    function selectPaperType(type, cardId) {
+      document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById(cardId).classList.add('selected');
+      document.getElementById(cardId).querySelector('input').checked = true;
+    }
+
+    function updateWordCount() {
+      const text = document.getElementById('abstract').value.trim();
+      const words = text ? text.split(/\s+/).length : 0;
+      const badge = document.getElementById('wordCountBadge');
+      badge.textContent = words + ' words (150–300 recommended)';
+      if (words >= 150 && words <= 350) {
+        badge.classList.add('good');
+      } else {
+        badge.classList.remove('good');
+      }
+    }
+
+    // Dropzone logic
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const fileDisplay = document.getElementById('fileSelectedDisplay');
+    const fileNameSpan = document.getElementById('fileSelectedName');
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files.length > 0) {
+        fileInput.files = e.dataTransfer.files;
+        handleFileChange();
+      }
+    });
+    fileInput.addEventListener('change', handleFileChange);
+
+    function handleFileChange() {
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const ext = '.' + file.name.split('.').pop().toLowerCase();
+        if (!['.pdf', '.doc', '.docx'].includes(ext)) {
+          showAlert('Only PDF, DOC, and DOCX files are permitted.', 'error');
+          fileInput.value = '';
+          fileDisplay.style.display = 'none';
+          return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          showAlert('File size exceeds the 10MB limit.', 'error');
+          fileInput.value = '';
+          fileDisplay.style.display = 'none';
+          return;
+        }
+        fileNameSpan.textContent = file.name + ' (' + (file.size / (1024 * 1024)).toFixed(2) + ' MB)';
+        fileDisplay.style.display = 'inline-flex';
+        hideAlert();
+      }
+    }
+
+    function clearFile(e) {
+      e.stopPropagation();
+      fileInput.value = '';
+      fileDisplay.style.display = 'none';
+    }
+
+    function showAlert(msg, type) {
+      const a = document.getElementById('statusAlert');
+      a.textContent = msg;
+      a.className = 'alert ' + (type === 'error' ? 'alert-error' : 'alert-success');
+      a.style.display = 'block';
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+
+    function hideAlert() {
+      document.getElementById('statusAlert').style.display = 'none';
+    }
+
+    let globalRefCode = '';
+    function copyRefCode() {
+      if (globalRefCode) {
+        navigator.clipboard.writeText(globalRefCode);
+        const btn = document.getElementById('copyRefBtn');
+        btn.textContent = '✓ Copied to Clipboard!';
+        setTimeout(() => btn.textContent = '📋 Copy Reference Code', 2000);
+      }
+    }
+
+    // Submit handler
+    document.getElementById('submissionForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!fileInput.files || fileInput.files.length === 0) {
+        showAlert('Please upload your manuscript file.', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Uploading manuscript & dispatching admin alerts...';
+
+      const formData = new FormData(document.getElementById('submissionForm'));
+
+      try {
+        const res = await fetch('/api/articles/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          document.getElementById('submissionForm').style.display = 'none';
+          document.getElementById('stepperNav').style.display = 'none';
+          globalRefCode = data.ref_code;
+          document.getElementById('successRefCode').textContent = data.ref_code;
+          document.getElementById('successTitle').textContent = data.article.title;
+          document.getElementById('trackLinkBtn').href = '/track?ref=' + encodeURIComponent(data.ref_code);
+          document.getElementById('successCard').style.display = 'block';
+          window.scrollTo({ top: 80, behavior: 'smooth' });
+        } else {
+          showAlert(data.error || 'Submission failed. Please check form inputs.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '🚀 Submit Manuscript for Peer Review';
+        }
+      } catch (err) {
+        showAlert('Network error: ' + err.message, 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🚀 Submit Manuscript for Peer Review';
+      }
+    });
+  </script>
+
+</body>
+</html>

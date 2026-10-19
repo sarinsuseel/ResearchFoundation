@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Author Guidelines &amp; Policies</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/articles" class="nav-link">Browse Articles</a>
+      <a href="/track" class="nav-link">Track Paper</a>
+      <a href="/guidelines" class="nav-link active">Author Guidelines</a>
+      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
+        <span>🛡️</span> Admin Portal
+      </a>
+      <a href="/submit" class="nav-btn">Submit Article →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/articles" class="mobile-nav-link">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link active">Author Guidelines</a>
+    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <main style="max-width: 900px; margin: 40px auto; padding: 0 24px;">
+
+    <div style="margin-bottom: 32px;">
+      <a href="/" style="font-size: 13.5px; color: var(--primary); font-weight: 600;">← Back to Home</a>
+      <h1 style="font-size: 34px; font-weight: 800; color: var(--text-dark); margin: 8px 0 6px;">
+        Author Guidelines &amp; Peer Review Policy
+      </h1>
+      <p style="color: var(--text-muted); font-size: 15px;">
+        Standard submission guidelines, formatting expectations, ethics benchmarks, and peer-review workflow for ASRF.
+      </p>
+    </div>
+
+    <!-- Quick highlights row -->
+    <div class="stats-grid-4" style="margin-bottom: 36px;">
+      <div class="stat-box">
+        <div class="stat-box-val" style="font-size: 26px;">&lt; 10%</div>
+        <div class="stat-box-lbl">Plagiarism Threshold</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-val" style="font-size: 26px;">48–72h</div>
+        <div class="stat-box-lbl">Review Turnaround</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-val" style="font-size: 26px;">CC BY 4.0</div>
+        <div class="stat-box-lbl">Open Access License</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-val" style="font-size: 26px;">Crossref</div>
+        <div class="stat-box-lbl">DOI Assignment</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 24px;">
+      <h2 style="font-size: 20px; font-weight: 800; color: var(--primary); margin-bottom: 12px;">
+        1. Manuscript Structure &amp; Format
+      </h2>
+      <p style="font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
+        Manuscripts must be submitted in <strong>Microsoft Word (.doc, .docx)</strong> or <strong>PDF (.pdf)</strong> format. All submissions should follow standard IMRAD academic structuring:
+      </p>
+      <ul style="margin-left: 20px; font-size: 14px; color: var(--text-body); line-height: 1.8;">
+        <li><strong>Title:</strong> Concise, informative (10–25 words). Avoid formulaic acronyms.</li>
+        <li><strong>Abstract:</strong> Self-contained summary between 150 and 350 words detailing background, methodology, results, and conclusion.</li>
+        <li><strong>Keywords:</strong> 3 to 6 indexable terms separated by commas.</li>
+        <li><strong>Introduction:</strong> Contextualize the research problem and literature review.</li>
+        <li><strong>Methodology:</strong> Explicit detail ensuring reproducibility.</li>
+        <li><strong>Results &amp; Discussion:</strong> Empirical data, tables, figures, and comparative interpretation.</li>
+        <li><strong>References:</strong> Standard APA or IEEE format.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-bottom: 24px;">
+      <h2 style="font-size: 20px; font-weight: 800; color: var(--primary); margin-bottom: 12px;">
+        2. Editorial Peer-Review Protocol
+      </h2>
+      <p style="font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin-bottom: 14px;">
+        ASRF operates a <strong>Double-Blind Peer Review</strong> process. The reviewer does not know the author's identity, and vice versa.
+      </p>
+      <div style="background: #f8fafc; border-left: 4px solid var(--primary); padding: 14px 18px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+        Upon submission, an immediate notification is dispatched to the Editorial Committee. Initial editorial triage (plagiarism &amp; scope check) is performed within 24 hours, followed by specialist evaluation within 48 to 72 hours.
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 32px;">
+      <h2 style="font-size: 20px; font-weight: 800; color: var(--primary); margin-bottom: 12px;">
+        3. Plagiarism &amp; Ethical Standards
+      </h2>
+      <p style="font-size: 14.5px; line-height: 1.7; color: var(--text-body);">
+        All manuscripts undergo automated similarity screening. Papers showing overall similarity exceeding <strong>10%</strong> (excluding bibliography) are rejected or returned for revision. Authors must ensure appropriate citation of prior research.
+      </p>
+    </div>
+
+    <div class="guidelines-cta">
+      <div class="guidelines-left">
+        <h2 class="guidelines-title">Ready to Submit Your Manuscript?</h2>
+        <p class="guidelines-desc">
+          Begin your submission now with our fast 4-step submission wizard.
+        </p>
+      </div>
+      <div class="guidelines-actions">
+        <a href="/submit" class="btn-white">Start Submission →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer Reviewed • Fast Go Engine</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

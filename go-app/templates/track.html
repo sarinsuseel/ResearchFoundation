@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Manuscript Status Tracking</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/articles" class="nav-link">Browse Articles</a>
+      <a href="/track" class="nav-link active">Track Paper</a>
+      <a href="/guidelines" class="nav-link">Author Guidelines</a>
+      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
+        <span>🛡️</span> Admin Portal
+      </a>
+      <a href="/submit" class="nav-btn">Submit Article →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/articles" class="mobile-nav-link">Browse Articles</a>
+    <a href="/track" class="mobile-nav-link active">Track Paper Status</a>
+    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
+    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
+    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+  </div>
+
+  <main style="max-width: 860px; margin: 36px auto; padding: 0 16px;">
+
+    <div style="text-align: center; margin-bottom: 32px;">
+      <div class="hero-badge" style="background: var(--primary-subtle); color: var(--primary); border: 1px solid #bfdbfe;">
+        🔍 Real-Time Editorial Tracker
+      </div>
+      <h1 style="font-size: 30px; font-weight: 800; color: var(--text-dark); margin: 8px 0 6px;">
+        Track Your Manuscript Status
+      </h1>
+      <p style="color: var(--text-muted); font-size: 14.5px; max-width: 580px; margin: 0 auto;">
+        Enter your Manuscript Reference Code (e.g. <code>ASRF-2026-1868</code>) or your author email to check live peer review progress.
+      </p>
+
+      <!-- Tracking Search Box -->
+      <form action="/track" method="GET" style="max-width: 600px; margin: 24px auto 0;">
+        <div class="search-box" style="box-shadow: var(--shadow-md);">
+          <span class="search-icon">🔎</span>
+          <input
+            type="text"
+            name="ref"
+            class="search-input"
+            placeholder="Enter Reference Code or Author Email..."
+            value="{{ .Ref }}"
+            required
+          >
+          <button type="submit" class="search-btn">Track Status</button>
+        </div>
+      </form>
+    </div>
+
+    {{ if .Ref }}
+      {{ if not .Articles }}
+      <div class="card" style="text-align: center; padding: 44px 20px;">
+        <div style="font-size: 44px; margin-bottom: 12px;">🔍</div>
+        <h3 style="font-size: 19px; font-weight: 700; color: var(--text-dark);">No Manuscript Found</h3>
+        <p style="color: var(--text-muted); font-size: 14px; margin: 6px auto 18px; max-width: 440px;">
+          We couldn't locate any submission matching "<strong>{{ .Ref }}</strong>". Please double check your reference code or corresponding author email.
+        </p>
+        <a href="/submit" class="btn-primary" style="display: inline-block; width: auto; padding: 10px 24px;">
+          Submit New Manuscript
+        </a>
+      </div>
+      {{ else }}
+
+      {{ range .Articles }}
+      <div class="card" style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">
+              <span class="badge-ref">{{ .RefCode }}</span>
+              {{ if eq .Status "PUBLISHED" }}
+              <span class="badge badge-published">● ACCEPTED &amp; PUBLISHED</span>
+              {{ else if eq .Status "PENDING" }}
+              <span class="badge badge-pending">⏳ UNDER PEER REVIEW</span>
+              {{ else if eq .Status "REJECTED" }}
+              <span class="badge badge-rejected">✕ NOT ACCEPTED</span>
+              {{ else }}
+              <span class="badge">{{ .Status }}</span>
+              {{ end }}
+            </div>
+            <h2 style="font-size: 19px; font-weight: 800; color: var(--text-dark); line-height: 1.4;">
+              {{ .Title }}
+            </h2>
+          </div>
+
+          {{ if eq .Status "PUBLISHED" }}
+          <a href="/articles/{{ .ID }}" class="btn-primary" style="width: auto; padding: 9px 18px; font-size: 13px;" target="_blank">
+            View Live Paper ↗
+          </a>
+          {{ end }}
+        </div>
+
+        <div style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 22px;">
+          <span>👤 <strong>Author:</strong> {{ .AuthorName }}</span> &bull;
+          <span>🏛️ <strong>Institution:</strong> {{ .AuthorAffiliation }}</span> &bull;
+          <span>📅 <strong>Submitted:</strong> {{ formatTime .CreatedAt }}</span>
+        </div>
+
+        <!-- Visual 4-Step Milestone Stepper with mobile wrapper -->
+        <div class="timeline">
+          <!-- Step 1 -->
+          <div class="timeline-step completed">
+            <div class="timeline-dot">✓</div>
+            <div class="timeline-content-wrap">
+              <div class="timeline-title">Submitted</div>
+              <div class="timeline-desc">{{ formatDate .CreatedAt }}</div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-step {{ if or (eq .Status "PENDING") (eq .Status "PUBLISHED") }}completed{{ else }}current{{ end }}">
+            <div class="timeline-dot">{{ if eq .Status "PUBLISHED" }}✓{{ else }}🔍{{ end }}</div>
+            <div class="timeline-content-wrap">
+              <div class="timeline-title">Screening</div>
+              <div class="timeline-desc">Plagiarism &amp; Scope</div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-step {{ if eq .Status "PUBLISHED" }}completed{{ else if eq .Status "PENDING" }}current{{ end }}">
+            <div class="timeline-dot">{{ if eq .Status "PUBLISHED" }}✓{{ else }}⚖️{{ end }}</div>
+            <div class="timeline-content-wrap">
+              <div class="timeline-title">Peer Review</div>
+              <div class="timeline-desc">Editorial Evaluation</div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-step {{ if eq .Status "PUBLISHED" }}completed{{ else if eq .Status "REJECTED" }}current{{ end }}">
+            <div class="timeline-dot">{{ if eq .Status "PUBLISHED" }}🎉{{ else if eq .Status "REJECTED" }}✕{{ else }}⏳{{ end }}</div>
+            <div class="timeline-content-wrap">
+              <div class="timeline-title">Decision</div>
+              <div class="timeline-desc">
+                {{ if eq .Status "PUBLISHED" }}
+                Published
+                {{ else if eq .Status "REJECTED" }}
+                Feedback Sent
+                {{ else }}
+                Pending (48-72h)
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rejection note if applicable -->
+        {{ if .RejectNote }}
+        <div class="alert alert-error" style="margin-top: 18px;">
+          <strong>Editorial Feedback:</strong> {{ .RejectNote }}
+        </div>
+        {{ end }}
+
+        <div style="background: var(--primary-subtle); border-radius: var(--radius-md); padding: 13px 18px; font-size: 12.5px; color: #334155; margin-top: 14px;">
+          💡 <strong>Editorial Board Notice:</strong> The peer review committee typically reviews manuscripts within 48 to 72 business hours. If you require expedited indexing, contact <code>editorial@researchplatform.com</code>.
+        </div>
+      </div>
+      {{ end }}
+
+      {{ end }}
+    {{ else }}
+      <!-- Sample prompt card when no search is active -->
+      <div class="card" style="text-align: center; padding: 36px 20px;">
+        <h3 style="font-size: 16.5px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">
+          Example Reference Codes to Test:
+        </h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Click any reference code below to preview the live tracking experience:
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <a href="/track?ref=ASRF-2026-3a70" class="btn-secondary" style="font-size: 12.5px; padding: 7px 14px;">
+            ASRF-2026-3a70 (Published)
+          </a>
+          <a href="/track?ref=ASRF-2026-1868" class="btn-secondary" style="font-size: 12.5px; padding: 7px 14px;">
+            ASRF-2026-1868 (Pending)
+          </a>
+        </div>
+      </div>
+    {{ end }}
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer Reviewed • Fast Go Engine</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
