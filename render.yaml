@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: asrf-research-platform
+    runtime: go
+    plan: free
+    rootDir: go-app
+    buildCommand: go build -o server main.go
+    startCommand: ./server
+    healthCheckPath: /api/health
+    envVars:
+      - key: DB_TYPE
+        value: sqlite
+      - key: DB_PATH
+        value: ./data/asrf.db
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: ADMIN_EMAIL
+        value: admin@researchplatform.com
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 587
