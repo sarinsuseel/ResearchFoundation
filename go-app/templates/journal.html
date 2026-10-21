@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Academic Research &amp; Scholarly Publication Platform</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/journal" class="nav-link active">Journal</a>
+      <a href="/events" class="nav-link">Event</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/gallery" class="nav-link">Gallery</a>
+      <a href="/contact" class="nav-link">Contact Us</a>
+      <a href="/contact" class="nav-btn">Inquire / Join →</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/journal" class="mobile-nav-link active">Journal &amp; Issues</a>
+    <a href="/events" class="mobile-nav-link">Events &amp; Conferences</a>
+    <a href="/blog" class="mobile-nav-link">Blog &amp; Insights</a>
+    <a href="/gallery" class="mobile-nav-link">Gallery</a>
+    <a href="/contact" class="mobile-nav-link">Contact Us</a>
+    <a href="/contact" class="mobile-nav-btn">Inquire / Join →</a>
+  </div>
+
+  <!-- ── Journal Header Banner ── -->
+  <header class="journal-header-banner">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <span class="badge" style="background: rgba(255, 255, 255, 0.15); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); font-size: 12.5px; padding: 6px 16px; margin-bottom: 12px; display: inline-block;">
+        INTERNATIONAL PEER-REVIEWED MULTIDISCIPLINARY JOURNAL
+      </span>
+      <h1 style="font-size: 34px; font-weight: 800; line-height: 1.3; margin-bottom: 10px; color: #ffffff;">
+        ASRF Journal of Applied Statistics &amp; Multidisciplinary Research
+      </h1>
+      <p style="font-size: 15px; color: #cbd5e1; max-width: 760px; margin: 0 auto 16px; line-height: 1.6;">
+        A high-impact scholarly journal dedicated to theoretical advancements, empirical quantitative modeling, and cross-disciplinary scientific dissemination.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 12.5px; color: #bfdbfe;">
+        <span><strong>ISSN:</strong> [XXXX-XXXX (Online) - Placeholder]</span>
+        <span>•</span>
+        <span><strong>Frequency:</strong> Bi-Annual (2 Issues / Year)</span>
+        <span>•</span>
+        <span><strong>Access:</strong> Open Access (CC BY-NC 4.0)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── 2nd Menu Bar (Sticky Secondary Sub-Navigation) ── -->
+  <div class="journal-subnav-sticky">
+    <div class="journal-subnav-container">
+      <button class="subnav-tab-btn active" data-tab="aim-scope" onclick="switchJournalTab('aim-scope')">
+        <span>🎯</span> Aim &amp; Scope
+      </button>
+      <button class="subnav-tab-btn" data-tab="editorial-board" onclick="switchJournalTab('editorial-board')">
+        <span>👥</span> Editorial Board
+      </button>
+      <button class="subnav-tab-btn" data-tab="current-issue" onclick="switchJournalTab('current-issue')">
+        <span>📖</span> Current Issue
+      </button>
+      <button class="subnav-tab-btn" data-tab="archives" onclick="switchJournalTab('archives')">
+        <span>📚</span> Archives &amp; Past Issues
+      </button>
+      <button class="subnav-tab-btn" data-tab="guidelines" onclick="switchJournalTab('guidelines')">
+        <span>📝</span> Author Guidelines
+      </button>
+      <button class="subnav-tab-btn" data-tab="peer-review" onclick="switchJournalTab('peer-review')">
+        <span>🔍</span> Peer Review Policy
+      </button>
+      <button class="subnav-tab-btn" data-tab="ethics" onclick="switchJournalTab('ethics')">
+        <span>⚖️</span> Publication Ethics
+      </button>
+      <button class="subnav-tab-btn" data-tab="indexing" onclick="switchJournalTab('indexing')">
+        <span>🌐</span> Indexing
+      </button>
+      <button class="subnav-tab-btn" data-tab="downloads" onclick="switchJournalTab('downloads')">
+        <span>📥</span> Downloads &amp; Forms
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Journal Tab Content Panels ── -->
+  <main style="max-width: 1160px; margin: 36px auto; padding: 0 24px;">
+
+    <!-- 1. Tab: Aim & Scope -->
+    <section class="journal-tab-panel active" id="tab-aim-scope">
+      <div class="card" style="margin-bottom: 24px;">
+        <span class="dummy-tag">ℹ️ [Aim &amp; Scope Description — Customizable by Client]</span>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 12px;">
+          Aim &amp; Scope of the Journal
+        </h2>
+        <p style="font-size: 15px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px;">
+          The <strong>ASRF Journal of Applied Statistics &amp; Multidisciplinary Research</strong> provides an international forum for the publication of original research papers, reviews, and short communications in the fields of statistical methods, data science, behavioral analytics, economics, and applied multidisciplinary sciences.
+        </p>
+        <p style="font-size: 14.5px; line-height: 1.7; color: var(--text-muted); margin-bottom: 24px;">
+          We particularly welcome research bridging theoretical statistical modeling with real-world problems in public health, industrial optimization, econometrics, computational intelligence, and social sciences.
+        </p>
+
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 14px;">
+          Covered Subject Domains:
+        </h3>
+        <div class="scope-grid">
+          <div class="scope-pill">📊 Mathematical &amp; Applied Statistics</div>
+          <div class="scope-pill">💻 Computational Data Science &amp; AI</div>
+          <div class="scope-pill">📈 Econometrics &amp; Financial Analytics</div>
+          <div class="scope-pill">🧬 Biostatistics &amp; Epidemiological Modeling</div>
+          <div class="scope-pill">🏭 Industrial Quality Engineering</div>
+          <div class="scope-pill">🌱 Environmental &amp; Agricultural Analytics</div>
+          <div class="scope-pill">📚 Educational &amp; Behavioral Measurement</div>
+          <div class="scope-pill">🔍 Quantitative Social Research</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Tab: Editorial Board -->
+    <section class="journal-tab-panel" id="tab-editorial-board">
+      <div class="card" style="margin-bottom: 24px;">
+        <span class="dummy-tag">ℹ️ [Editorial Board Names &amp; Affiliations — Placeholder to be provided by Client]</span>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Editorial Board &amp; Advisory Committee
+        </h2>
+
+        <!-- Chief Editor -->
+        <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px;">
+          <span class="badge" style="background: var(--primary); color: #ffffff; margin-bottom: 6px;">EDITOR-IN-CHIEF</span>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin: 4px 0;">
+            Prof. [Name of Chief Editor - To Be Provided]
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 4px;">
+            Department of Statistics &amp; Computational Mathematics, [University / Institute Name]
+          </p>
+          <p style="font-size: 13px; color: var(--primary);">
+            ✉️ editor@asrf-foundation.org
+          </p>
+        </div>
+
+        <!-- Associate Editors Grid -->
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px;">
+          Associate Editors &amp; Reviewer Panel
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px;">
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+            <strong style="color: var(--text-dark); font-size: 15px;">Dr. [Associate Editor 1 - Placeholder]</strong>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Professor of Applied Econometrics, [Institution Name]</p>
+            <span style="font-size: 11.5px; color: #2563eb; font-weight: 600;">Area: Economics &amp; Time Series</span>
+          </div>
+
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+            <strong style="color: var(--text-dark); font-size: 15px;">Dr. [Associate Editor 2 - Placeholder]</strong>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Head of Data Systems, [University / Research Institute]</p>
+            <span style="font-size: 11.5px; color: #2563eb; font-weight: 600;">Area: Machine Learning &amp; Inferences</span>
+          </div>
+
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+            <strong style="color: var(--text-dark); font-size: 15px;">Dr. [Associate Editor 3 - Placeholder]</strong>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Director of Biostatistical Research, [Medical Sciences Center]</p>
+            <span style="font-size: 11.5px; color: #2563eb; font-weight: 600;">Area: Healthcare &amp; Clinical Trials</span>
+          </div>
+
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+            <strong style="color: var(--text-dark); font-size: 15px;">Dr. [Associate Editor 4 - Placeholder]</strong>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Senior Fellow in Mathematical Sciences, [National Academy]</p>
+            <span style="font-size: 11.5px; color: #2563eb; font-weight: 600;">Area: Stochastic Modeling</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Tab: Current Issue -->
+    <section class="journal-tab-panel" id="tab-current-issue">
+      <div class="card" style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">
+          <div>
+            <span class="badge badge-published" style="font-size: 12px;">CURRENT ISSUE</span>
+            <h2 style="font-size: 24px; font-weight: 800; color: var(--text-dark); margin: 6px 0 2px;">
+              Volume 8, Issue 1 (2026)
+            </h2>
+            <p style="font-size: 13.5px; color: var(--text-muted);">Published: March 2026 • Analize Statistice Research Foundation</p>
+          </div>
+          <span style="font-size: 13px; color: #2563eb; font-weight: 600; background: #eff6ff; padding: 6px 14px; border-radius: var(--radius-sm);">
+            Total Papers: 4
+          </span>
+        </div>
+
+        <p style="font-size: 14.5px; color: var(--text-body); line-height: 1.7; margin-bottom: 24px;">
+          Below is the compilation of peer-reviewed scientific articles published in the current issue. All manuscripts are available for open reading and archival access.
+        </p>
+
+        <!-- Current Articles List -->
+        <div class="articles-grid" style="grid-template-columns: 1fr;">
+          {{ if .Articles }}
+            {{ range .Articles }}
+            <div class="article-card">
+              <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
+                <span class="badge badge-published">● Peer-Reviewed</span>
+                {{ if .SubjectArea }}
+                <span class="article-subject" style="margin-bottom: 0;">{{ .SubjectArea }}</span>
+                {{ end }}
+                {{ if .PaperType }}
+                <span class="badge" style="background: #f1f5f9; color: #475569;">{{ .PaperType }}</span>
+                {{ end }}
+                {{ if .DOI }}
+                <span class="badge-doi" style="margin-left: auto;">DOI: {{ .DOI }}</span>
+                {{ end }}
+              </div>
+
+              <h3 class="article-title" style="font-size: 18px; margin-bottom: 8px;">
+                <a href="/articles/{{ .ID }}" style="color: inherit; text-decoration: none;">{{ .Title }}</a>
+              </h3>
+
+              <div class="article-author" style="margin-bottom: 12px;">
+                <span>👤 {{ .AuthorName }}</span>
+                {{ if .AuthorAffiliation }}
+                <span style="color: var(--text-light);">• {{ .AuthorAffiliation }}</span>
+                {{ end }}
+              </div>
+
+              <p class="article-abstract" style="margin-bottom: 16px;">
+                {{ .Abstract }}
+              </p>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-top: 1px solid var(--border-light); padding-top: 12px;">
+                <span style="font-size: 12.5px; color: var(--text-muted);">
+                  Published: {{ formatDate .PublishedAt }}
+                </span>
+                <div style="display: flex; gap: 8px;">
+                  <a href="/articles/{{ .ID }}" class="btn-secondary" style="padding: 6px 14px; font-size: 12px; width: auto;">
+                    View Abstract &amp; Citation ↗
+                  </a>
+                  <a href="{{ .FileURL }}" class="btn-primary" style="padding: 6px 14px; font-size: 12px; width: auto;" download>
+                    📥 Download PDF
+                  </a>
+                </div>
+              </div>
+            </div>
+            {{ end }}
+          {{ else }}
+            <p style="color: var(--text-muted); padding: 24px;">No published articles found in current issue.</p>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Tab: Archives & Past Issues -->
+    <section class="journal-tab-panel" id="tab-archives">
+      <div class="card" style="margin-bottom: 24px;">
+        <span class="dummy-tag">ℹ️ [Historical Volume Archives — Customizable by Client]</span>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Journal Archives &amp; Past Volumes
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">
+          Permanent digital repository of all previously published volumes and issues of the ASRF journal.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="padding: 18px 22px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <strong style="color: var(--text-dark); font-size: 16px;">Volume 7, Issue 2 (December 2025)</strong>
+              <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Articles Published: 8 Papers • Open Access Archive</div>
+            </div>
+            <a href="#current-issue" onclick="switchJournalTab('current-issue')" class="btn-secondary" style="padding: 6px 14px; font-size: 12.5px; width: auto;">
+              Browse Volume ↗
+            </a>
+          </div>
+
+          <div style="padding: 18px 22px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <strong style="color: var(--text-dark); font-size: 16px;">Volume 7, Issue 1 (June 2025)</strong>
+              <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Articles Published: 10 Papers • Open Access Archive</div>
+            </div>
+            <a href="#current-issue" onclick="switchJournalTab('current-issue')" class="btn-secondary" style="padding: 6px 14px; font-size: 12.5px; width: auto;">
+              Browse Volume ↗
+            </a>
+          </div>
+
+          <div style="padding: 18px 22px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <strong style="color: var(--text-dark); font-size: 16px;">Volume 6, Issue 2 (December 2024)</strong>
+              <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Articles Published: 7 Papers • Open Access Archive</div>
+            </div>
+            <a href="#current-issue" onclick="switchJournalTab('current-issue')" class="btn-secondary" style="padding: 6px 14px; font-size: 12.5px; width: auto;">
+              Browse Volume ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Tab: Author Guidelines -->
+    <section class="journal-tab-panel" id="tab-guidelines">
+      <div class="card" style="margin-bottom: 24px;">
+        <span class="dummy-tag">ℹ️ [Author Instructions &amp; Formatting Criteria]</span>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Author Guidelines &amp; Manuscript Formatting
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-body); line-height: 1.7; margin-bottom: 20px;">
+          Authors wishing to submit manuscripts to ASRF Journal should ensure their draft adheres strictly to our standard academic preparation guidelines:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 18px; margin-bottom: 24px;">
+          <div style="border-left: 3px solid var(--primary); padding-left: 16px;">
+            <strong style="font-size: 15px; color: var(--text-dark);">1. Manuscript Structure</strong>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.6;">
+              Articles must include Title, Author Names &amp; Affiliations, Corresponding Email, Abstract (max 250 words), 4–6 Keywords, Introduction, Methodology, Results &amp; Statistical Findings, Discussion, Conclusion, and References.
+            </p>
+          </div>
+
+          <div style="border-left: 3px solid var(--primary); padding-left: 16px;">
+            <strong style="font-size: 15px; color: var(--text-dark);">2. Referencing &amp; Citation Style</strong>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.6;">
+              The journal adopts <strong>APA (7th Edition)</strong> or <strong>IEEE</strong> citation format. All cited works must include verified DOI links wherever available.
+            </p>
+          </div>
+
+          <div style="border-left: 3px solid var(--primary); padding-left: 16px;">
+            <strong style="font-size: 15px; color: var(--text-dark);">3. Plagiarism &amp; Originality Benchmark</strong>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.6;">
+              Manuscripts must not exceed <strong>10% similarity index</strong> excluding bibliography. Plagiarized submissions will be summarily rejected.
+            </p>
+          </div>
+        </div>
+
+        <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-md); padding: 16px 20px; font-size: 13.5px; color: #1e40af;">
+          💡 <strong>Submission Inquiries:</strong> Inquiries regarding prospective submissions or special issues may be addressed to our editorial email at <code>editorial@asrf-foundation.org</code>.
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Tab: Peer Review Policy -->
+    <section class="journal-tab-panel" id="tab-peer-review">
+      <div class="card" style="margin-bottom: 24px;">
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Double-Blind Peer Review Policy
+        </h2>
+        <p style="font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 20px;">
+          To safeguard rigorous academic impartiality, the ASRF Journal operates a <strong>Double-Blind Peer Review</strong> model. Neither the authors nor the reviewers are aware of each other's identities throughout the evaluation phase.
+        </p>
+
+        <div class="stats-grid-4" style="margin-bottom: 28px;">
+          <div class="stat-box">
+            <div class="stat-box-val" style="font-size: 22px;">Phase 1</div>
+            <div class="stat-box-lbl">Editorial Scope &amp; Plagiarism Triage</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val" style="font-size: 22px;">Phase 2</div>
+            <div class="stat-box-lbl">2 Independent Reviewers Assigned</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val" style="font-size: 22px;">Phase 3</div>
+            <div class="stat-box-lbl">Author Revision &amp; Statistical Audit</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val" style="font-size: 22px;">Phase 4</div>
+            <div class="stat-box-lbl">Final Acceptance &amp; DOI Assignment</div>
+          </div>
+        </div>
+
+        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+          Turnaround timeline from initial evaluation to peer review decision averages 3 to 6 weeks, maintaining high publication integrity.
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. Tab: Publication Ethics -->
+    <section class="journal-tab-panel" id="tab-ethics">
+      <div class="card" style="margin-bottom: 24px;">
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Publication Ethics &amp; Malpractice Statement
+        </h2>
+        <p style="font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 18px;">
+          ASRF follows standard guidelines formulated by the Committee on Publication Ethics (COPE). We maintain zero tolerance for academic fabrication, data falsification, duplicate submission, or improper authorship claims.
+        </p>
+        <ul style="list-style: square; padding-left: 24px; font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+          <li>Authors must ensure original research and declare all competing financial or personal interests.</li>
+          <li>Reviewers must treat manuscripts confidentially and recuse themselves in instances of conflict of interest.</li>
+          <li>Editors retain final authority regarding acceptance, rejection, or post-publication corrections.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. Tab: Indexing & Abstracting -->
+    <section class="journal-tab-panel" id="tab-indexing">
+      <div class="card" style="margin-bottom: 24px;">
+        <span class="dummy-tag">ℹ️ [Indexing Databases — Placeholder to be provided by Client]</span>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Indexing &amp; Digital Abstracting
+        </h2>
+        <p style="font-size: 14.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 24px;">
+          ASRF Journal publications are digitally archived and indexed across academic repositories to maximize international research visibility and citation impact.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center; background: #f8fafc;">
+            <div style="font-size: 24px; margin-bottom: 4px;">🌐</div>
+            <strong style="color: var(--text-dark); font-size: 14px;">Google Scholar</strong>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Indexed &amp; Tracked</p>
+          </div>
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center; background: #f8fafc;">
+            <div style="font-size: 24px; margin-bottom: 4px;">🔗</div>
+            <strong style="color: var(--text-dark); font-size: 14px;">Crossref DOI</strong>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Persistent Identifiers</p>
+          </div>
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center; background: #f8fafc;">
+            <div style="font-size: 24px; margin-bottom: 4px;">📖</div>
+            <strong style="color: var(--text-dark); font-size: 14px;">Open Access Directory</strong>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Free Worldwide Access</p>
+          </div>
+          <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); text-align: center; background: #f8fafc;">
+            <div style="font-size: 24px; margin-bottom: 4px;">🏛️</div>
+            <strong style="color: var(--text-dark); font-size: 14px;">Academic Archives</strong>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Permanent Digital Preservation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Tab: Downloads & Copyright Form -->
+    <section class="journal-tab-panel" id="tab-downloads">
+      <div class="card" style="margin-bottom: 24px;">
+        <span class="dummy-tag">ℹ️ [Downloadable Documents &amp; Policy Forms]</span>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+          Downloads &amp; Copyright Transfer Forms
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-body); line-height: 1.7; margin-bottom: 24px;">
+          Download essential author forms, copyright clearance documentation, and manuscript formatting templates:
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="padding: 16px 20px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <strong style="font-size: 15px; color: var(--text-dark);">📄 ASRF Copyright Transfer &amp; Consent Agreement Form</strong>
+              <div style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">Required upon manuscript acceptance • PDF Document</div>
+            </div>
+            <a href="javascript:alert('Sample document placeholder. Client can attach formal copyright PDF here.')" class="btn-primary" style="padding: 7px 16px; font-size: 12.5px; width: auto;">
+              📥 Download Form
+            </a>
+          </div>
+
+          <div style="padding: 16px 20px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <strong style="font-size: 15px; color: var(--text-dark);">📝 Manuscript Word Drafting Template (.docx)</strong>
+              <div style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">Pre-formatted standard template with margins, fonts &amp; heading hierarchies</div>
+            </div>
+            <a href="javascript:alert('Sample template placeholder. Client can attach formal Word template here.')" class="btn-secondary" style="padding: 7px 16px; font-size: 12.5px; width: auto;">
+              📥 Download Template
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand-group" style="margin-bottom: 14px;">
+            <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+            <div class="nav-titles">
+              <span class="nav-title" style="color: #ffffff;">Analize Statistice Research Foundation</span>
+              <span class="nav-tagline" style="color: #94a3b8;">Scholarly Excellence &amp; Open Access Publishing</span>
+            </div>
+          </div>
+          <p style="color: #94a3b8; font-size: 13.5px; line-height: 1.7; max-width: 440px;">
+            A premier non-profit research foundation dedicated to statistical innovation, interdisciplinary academic dissemination, and global scholastic cooperation.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Navigation</h4>
+            <a href="/" class="footer-link">Home</a>
+            <a href="/about" class="footer-link">About the Foundation</a>
+            <a href="/journal" class="footer-link">Journal Hub</a>
+            <a href="/events" class="footer-link">Events</a>
+            <a href="/blog" class="footer-link">Blog</a>
+            <a href="/gallery" class="footer-link">Gallery</a>
+            <a href="/contact" class="footer-link">Contact Us</a>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Journal Menu</h4>
+            <a href="javascript:switchJournalTab('aim-scope')" class="footer-link">Aim &amp; Scope</a>
+            <a href="javascript:switchJournalTab('editorial-board')" class="footer-link">Editorial Board</a>
+            <a href="javascript:switchJournalTab('current-issue')" class="footer-link">Current Issue</a>
+            <a href="javascript:switchJournalTab('archives')" class="footer-link">Past Archives</a>
+            <a href="javascript:switchJournalTab('guidelines')" class="footer-link">Guidelines</a>
+            <a href="javascript:switchJournalTab('downloads')" class="footer-link">Downloads</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer-Reviewed • Non-Profit Academic Platform</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Academic Research &amp; Scholarly Publication Platform</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/journal" class="nav-link">Journal</a>
+      <a href="/events" class="nav-link active">Event</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/gallery" class="nav-link">Gallery</a>
+      <a href="/contact" class="nav-link">Contact Us</a>
+      <a href="/journal" class="nav-btn">Explore Journal →</a>
+    </div>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>
+    <a href="/events" class="mobile-nav-link active">Events &amp; Conferences</a>
+    <a href="/blog" class="mobile-nav-link">Blog &amp; Insights</a>
+    <a href="/gallery" class="mobile-nav-link">Gallery</a>
+    <a href="/contact" class="mobile-nav-link">Contact Us</a>
+    <a href="/journal" class="mobile-nav-btn">Explore Journal →</a>
+  </div>
+
+  <!-- Header Banner -->
+  <div class="journal-header-banner">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <span class="badge" style="background: rgba(255,255,255,0.18); color: #ffffff; padding: 6px 16px; font-size: 12px; margin-bottom: 10px; display: inline-block;">
+        SCHOLASTIC FORUMS &amp; COLLOQUIA
+      </span>
+      <h1 style="font-size: 34px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+        Academic Conferences &amp; Seminars
+      </h1>
+      <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+        Bringing together researchers, academicians, and empirical practitioners through regional symposiums, workshops, and international scientific summits.
+      </p>
+    </div>
+  </div>
+
+  <main style="max-width: 1140px; margin: 40px auto; padding: 0 24px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h2 style="font-size: 24px; font-weight: 800; color: var(--text-dark);">Upcoming Academic Events</h2>
+        <p style="font-size: 14px; color: var(--text-muted);">Browse conferences and methodology sessions organized by ASRF.</p>
+      </div>
+      <span class="dummy-tag">ℹ️ [Event Dates &amp; Details — Placeholder to be provided by Client]</span>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="events-grid">
+
+      <!-- Event 1 -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="badge" style="background: #dcfce7; color: #15803d; font-size: 11px;">● Registrations Open</span>
+          <div class="event-date-box">
+            <div class="event-date-day">14</div>
+            <div class="event-date-month">Nov 2026</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-meta">
+            <span>📍 New Delhi &amp; Virtual (Hybrid)</span>
+            <span>🎓 International Summit</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">
+            4th Global Conference on Applied Statistical Sciences &amp; Data Intelligence
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px;">
+            Features keynote sessions on Bayesian inference, high-dimensional statistical modeling, and computational algorithmic applications in public policy.
+          </p>
+          <div style="border-top: 1px solid var(--border-light); padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--primary); font-weight: 600;">Chair: Prof. [Name Placeholder]</span>
+            <a href="javascript:alert('Sample event brochure placeholder. Client will provide conference brochure.')" class="btn-secondary" style="padding: 6px 14px; font-size: 12px; width: auto;">
+              Brochure (PDF) ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="badge" style="background: #e0e7ff; color: #3730a3; font-size: 11px;">● Academic Workshop</span>
+          <div class="event-date-box">
+            <div class="event-date-day">28</div>
+            <div class="event-date-month">Dec 2026</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-meta">
+            <span>📍 Online Interactive Classroom</span>
+            <span>⏳ 3-Day Masterclass</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">
+            Hands-on Research Methodology, R &amp; Python Statistical Modeling
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px;">
+            Practical computational masterclass for PhD scholars and university faculty covering multivariate regression, ANOVA, and econometric time series analysis.
+          </p>
+          <div style="border-top: 1px solid var(--border-light); padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--primary); font-weight: 600;">Faculty: Dr. [Name Placeholder]</span>
+            <a href="javascript:alert('Sample workshop curriculum placeholder. Client will provide syllabus.')" class="btn-secondary" style="padding: 6px 14px; font-size: 12px; width: auto;">
+              Syllabus ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <div class="event-header">
+          <span class="badge" style="background: #fef3c7; color: #92400e; font-size: 11px;">● National Symposium</span>
+          <div class="event-date-box">
+            <div class="event-date-day">18</div>
+            <div class="event-date-month">Feb 2027</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-meta">
+            <span>📍 Academic Auditorium, [City Placeholder]</span>
+            <span>🏆 Research Awards</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">
+            ASRF Annual Scholarly Convention &amp; Young Researcher Colloquium
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px;">
+            Annual gathering featuring oral paper presentations, poster sessions, and the conferral of the ASRF Foundation Research Excellence Honors.
+          </p>
+          <div style="border-top: 1px solid var(--border-light); padding-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--primary); font-weight: 600;">Convenor: Dr. [Name Placeholder]</span>
+            <a href="javascript:alert('Sample convention details placeholder.')" class="btn-secondary" style="padding: 6px 14px; font-size: 12px; width: auto;">
+              Read More ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Past Conferences Section -->
+    <section class="card" style="margin-top: 48px;">
+      <h3 style="font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 16px;">
+        Past Proceedings &amp; Completed Symposia
+      </h3>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <strong style="color: var(--text-dark); font-size: 14.5px;">2025 National Conference on Predictive Analytics and Social Statistics</strong>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">Held in October 2025 • 42 Papers Presented • Proceedings Archived</p>
+          </div>
+          <span class="badge badge-published" style="font-size: 11px;">Archived</span>
+        </div>
+
+        <div style="padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <strong style="color: var(--text-dark); font-size: 14.5px;">2024 International Workshop on Biostatistical Models in Public Health</strong>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">Held in August 2024 • 120 Scholars Attended • Technical Report Issued</p>
+          </div>
+          <span class="badge badge-published" style="font-size: 11px;">Archived</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Academic Conferences • Research Workshops • Scholarly Platforms</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Academic Research &amp; Scholarly Publication Platform</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about" class="nav-link active">About</a>
+      <a href="/journal" class="nav-link">Journal</a>
+      <a href="/events" class="nav-link">Event</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/gallery" class="nav-link">Gallery</a>
+      <a href="/contact" class="nav-link">Contact Us</a>
+      <a href="/journal" class="nav-btn">Explore Journal →</a>
+    </div>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/about" class="mobile-nav-link active">About</a>
+    <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>
+    <a href="/events" class="mobile-nav-link">Events &amp; Conferences</a>
+    <a href="/blog" class="mobile-nav-link">Blog &amp; Insights</a>
+    <a href="/gallery" class="mobile-nav-link">Gallery</a>
+    <a href="/contact" class="mobile-nav-link">Contact Us</a>
+    <a href="/journal" class="mobile-nav-btn">Explore Journal →</a>
+  </div>
+
+  <!-- Page Banner -->
+  <div class="journal-header-banner">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <span class="badge" style="background: rgba(255,255,255,0.18); color: #ffffff; padding: 6px 16px; font-size: 12px; margin-bottom: 10px; display: inline-block;">
+        FOUNDATION PROFILE
+      </span>
+      <h1 style="font-size: 34px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+        About Analize Statistice Research Foundation
+      </h1>
+      <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+        A non-profit scientific and scholastic body devoted to empirical analytics, statistical methodology, and multidisciplinary research advancement.
+      </p>
+    </div>
+  </div>
+
+  <main style="max-width: 1080px; margin: 40px auto; padding: 0 24px;">
+
+    <!-- About Foundation Story -->
+    <section class="card" style="margin-bottom: 32px;">
+      <span class="dummy-tag">ℹ️ [Foundation Background — Placeholder to be customized by Client]</span>
+      <h2 style="font-size: 26px; font-weight: 800; color: var(--primary); margin: 8px 0 16px;">
+        Who We Are
+      </h2>
+      <p style="font-size: 15.5px; line-height: 1.85; color: var(--text-body); margin-bottom: 18px;">
+        The <strong>Analize Statistice Research Foundation (ASRF)</strong> was incorporated as an autonomous academic institution aiming to promote scientific inquiry, data-driven methodology, and evidence-based scholastic contributions. Our foundation provides a nexus where mathematicians, social scientists, computer scientists, and economists exchange knowledge.
+      </p>
+      <p style="font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 24px;">
+        Through peer-reviewed open access dissemination, regional seminars, and hands-on statistical training workshops, ASRF actively bridges academic research with public policy and industrial innovation.
+      </p>
+
+      <!-- Vision & Mission Grid -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="contact-grid">
+        <div style="padding: 24px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+          <div style="font-size: 28px; margin-bottom: 8px;">👁️</div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">Our Vision</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+            To be an internationally recognized research foundation fostering mathematical rigor, ethical research practices, and universal access to groundbreaking discoveries across all disciplines.
+          </p>
+        </div>
+
+        <div style="padding: 24px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+          <div style="font-size: 28px; margin-bottom: 8px;">🎯</div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">Our Mission</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+            To empower scholars through high-quality peer-reviewed publishing, interdisciplinary conferences, and specialized statistical workshops while adhering to international publication ethics.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- President / Director's Message -->
+    <section class="card" style="margin-bottom: 32px; border-left: 4px solid var(--primary);">
+      <span class="dummy-tag">ℹ️ [Leadership Welcome Address — Placeholder to be provided by Client]</span>
+      <h2 style="font-size: 22px; font-weight: 800; color: var(--primary); margin: 6px 0 12px;">
+        President's Address
+      </h2>
+      <p style="font-size: 15px; line-height: 1.8; color: var(--text-body); font-style: italic; margin-bottom: 16px;">
+        "At Analize Statistice Research Foundation, we believe that statistical rigor is the cornerstone of trustworthy science. In an era inundated with information, the ability to extract truthful, reproducible, and actionable insights through disciplined research is indispensable. We warmly invite scholars, institutions, and young researchers worldwide to join us in advancing knowledge."
+      </p>
+      <div>
+        <strong style="color: var(--text-dark); font-size: 15px;">Dr. [President / Director Name - Placeholder]</strong>
+        <p style="font-size: 13px; color: var(--text-muted);">President &amp; Founder, Analize Statistice Research Foundation</p>
+      </div>
+    </section>
+
+    <!-- Advisory Board -->
+    <section class="card" style="margin-bottom: 32px;">
+      <span class="dummy-tag">ℹ️ [Advisory Council Members — Placeholder to be provided by Client]</span>
+      <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 6px 0 18px;">
+        Academic Advisory Board
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px;">
+        <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+          <strong style="color: var(--text-dark); font-size: 15px;">Prof. [Advisory Member 1]</strong>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 3px;">Emeritus Professor of Mathematical Statistics</p>
+          <span style="font-size: 12px; color: #2563eb;">Member, Academic Standards Council</span>
+        </div>
+
+        <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+          <strong style="color: var(--text-dark); font-size: 15px;">Dr. [Advisory Member 2]</strong>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 3px;">Dean of Research, [University / Institute]</p>
+          <span style="font-size: 12px; color: #2563eb;">Chair, Peer Review Committee</span>
+        </div>
+
+        <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+          <strong style="color: var(--text-dark); font-size: 15px;">Dr. [Advisory Member 3]</strong>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 3px;">Principal Scientist, Applied Econometrics Group</p>
+          <span style="font-size: 12px; color: #2563eb;">Member, Publication Ethics Board</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand-group" style="margin-bottom: 14px;">
+            <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+            <div class="nav-titles">
+              <span class="nav-title" style="color: #ffffff;">Analize Statistice Research Foundation</span>
+              <span class="nav-tagline" style="color: #94a3b8;">Scholarly Excellence &amp; Open Access Publishing</span>
+            </div>
+          </div>
+          <p style="color: #94a3b8; font-size: 13.5px; line-height: 1.7; max-width: 440px;">
+            A premier non-profit research foundation dedicated to statistical innovation, interdisciplinary academic dissemination, and global scholastic cooperation.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Navigation</h4>
+            <a href="/" class="footer-link">Home</a>
+            <a href="/about" class="footer-link">About the Foundation</a>
+            <a href="/journal" class="footer-link">Journal Hub</a>
+            <a href="/events" class="footer-link">Academic Events</a>
+            <a href="/blog" class="footer-link">Scholarly Blog</a>
+            <a href="/gallery" class="footer-link">Gallery</a>
+            <a href="/contact" class="footer-link">Contact Us</a>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Contact</h4>
+            <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
+              <strong>Email:</strong> contact@asrf-foundation.org
+            </p>
+            <p style="color: #94a3b8; font-size: 13px; line-height: 1.6;">
+              <strong>Location:</strong> [Office Address Placeholder]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Open Access • Peer-Reviewed • Non-Profit Academic Platform</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

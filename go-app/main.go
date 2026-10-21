@@ -87,19 +87,28 @@ func main() {
 	filesDir(r, "/uploads", http.Dir(uploadDir))
 
 	// ─── Frontend Page Routes ────────────────────────────────
-	// 1. Landing Page about company
+	// 1. Home Page (with Hero Slider & News Ticker)
 	r.Get("/", pageHandler.HomePage)
-	// 2. Where articles are published
-	r.Get("/articles", pageHandler.ArticlesPage)
+	// 2. About Us Page
+	r.Get("/about", pageHandler.AboutPage)
+	// 3. Journal Hub (with 2nd secondary menu bar: Aim & Scope, Board, Current Issue, Archives, Guidelines)
+	r.Get("/journal", pageHandler.JournalPage)
+	r.Get("/journals", pageHandler.JournalPage)
+	r.Get("/articles", pageHandler.JournalPage)
 	r.Get("/articles/{id}", pageHandler.ArticleDetailPage)
-	// 3. Upload article page
-	r.Get("/submit", pageHandler.SubmitPage)
-	// 4. Track submission status (self-service)
-	r.Get("/track", pageHandler.TrackPage)
-	// 5. Author guidelines & editorial policy
-	r.Get("/guidelines", pageHandler.GuidelinesPage)
-	// 6. Admin acceptance & review portal
-	r.Get("/admin", pageHandler.AdminPage)
+	// 4. Events & Conferences
+	r.Get("/events", pageHandler.EventsPage)
+	// 5. Scholarly Blog & Research Insights
+	r.Get("/blog", pageHandler.BlogPage)
+	// 6. Photo Gallery
+	r.Get("/gallery", pageHandler.GalleryPage)
+	// 7. Contact Us
+	r.Get("/contact", pageHandler.ContactPage)
+
+	// Redirect helper for legacy guidelines link
+	r.Get("/guidelines", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/journal#guidelines", http.StatusMovedPermanently)
+	})
 
 	// ─── API Routes ──────────────────────────────────────────
 	r.Route("/api", func(r chi.Router) {

@@ -80,12 +80,12 @@ func NewPageHandler(svc *services.ArticleService, cfg *config.Config) (*PageHand
 	}, nil
 }
 
-// HomePage renders Page 1: Landing page about the company
+// HomePage renders landing page with Hero Slider, News Ticker, and Foundation highlights
 func (h *PageHandler) HomePage(w http.ResponseWriter, r *http.Request) {
-	recent, _ := h.svc.GetRecentArticles(3)
+	recent, _ := h.svc.GetRecentArticles(4)
 
 	data := map[string]interface{}{
-		"Title":          "Analize Statistice Research Foundation — Peer-Reviewed Open Access",
+		"Title":          "Analize Statistice Research Foundation — Advancing Statistical & Scholarly Research",
 		"ActiveNav":      "home",
 		"RecentArticles": recent,
 		"BaseURL":        h.cfg.BaseURL,
@@ -93,6 +93,75 @@ func (h *PageHandler) HomePage(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	_ = h.tmpl.ExecuteTemplate(w, "index.html", data)
+}
+
+// AboutPage renders the foundation overview, vision, mission, and leadership
+func (h *PageHandler) AboutPage(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Title":     "About Us — Analize Statistice Research Foundation",
+		"ActiveNav": "about",
+		"BaseURL":   h.cfg.BaseURL,
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "about.html", data)
+}
+
+// JournalPage renders the Journal hub with secondary sub-navigation bar (Aim & Scope, Board, Current Issue, Archives, Guidelines)
+func (h *PageHandler) JournalPage(w http.ResponseWriter, r *http.Request) {
+	articles, _, _ := h.svc.GetPublishedArticles("", "", 10, 0)
+
+	data := map[string]interface{}{
+		"Title":     "ASRF Academic Journal — Peer-Reviewed Open Access",
+		"ActiveNav": "journal",
+		"Articles":  articles,
+		"BaseURL":   h.cfg.BaseURL,
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "journal.html", data)
+}
+
+// EventsPage renders foundation conferences, seminars, and workshops
+func (h *PageHandler) EventsPage(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Title":     "Events & Academic Conferences — ASRF",
+		"ActiveNav": "events",
+		"BaseURL":   h.cfg.BaseURL,
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "events.html", data)
+}
+
+// BlogPage renders scholarly articles, insights, and foundation news
+func (h *PageHandler) BlogPage(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Title":     "Scholarly Blog & Research Insights — ASRF",
+		"ActiveNav": "blog",
+		"BaseURL":   h.cfg.BaseURL,
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "blog.html", data)
+}
+
+// GalleryPage renders foundation symposiums, events, and conference photo gallery
+func (h *PageHandler) GalleryPage(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Title":     "Foundation Photo Gallery — ASRF",
+		"ActiveNav": "gallery",
+		"BaseURL":   h.cfg.BaseURL,
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "gallery.html", data)
+}
+
+// ContactPage renders office location, general inquiries, and contact details
+func (h *PageHandler) ContactPage(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Title":     "Contact Us — Analize Statistice Research Foundation",
+		"ActiveNav": "contact",
+		"BaseURL":   h.cfg.BaseURL,
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "contact.html", data)
 }
 
 // ArticlesPage renders Page 2: Where articles are published

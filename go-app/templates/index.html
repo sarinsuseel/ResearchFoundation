@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,21 +17,20 @@
       <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
       <div class="nav-titles">
         <span class="nav-title">Analize Statistice Research Foundation</span>
-        <span class="nav-tagline">Research Publication Platform</span>
+        <span class="nav-tagline">Academic Research &amp; Scholarly Publication Platform</span>
       </div>
     </a>
 
     <!-- Desktop Navigation -->
     <div class="nav-links">
-      <a href="/articles" class="nav-link">Browse Articles</a>
-      <a href="/track" class="nav-link">Track Paper</a>
-      <a href="/guidelines" class="nav-link">Guidelines</a>
-      <a href="/#about" class="nav-link">About Us</a>
-      <a href="/#scope" class="nav-link">Scope</a>
-      <a href="/admin" class="nav-admin-badge" title="Editorial Admin Review Portal">
-        <span>🛡️</span> Admin Portal
-      </a>
-      <a href="/submit" class="nav-btn">Submit Article →</a>
+      <a href="/" class="nav-link active">Home</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/journal" class="nav-link">Journal</a>
+      <a href="/events" class="nav-link">Event</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/gallery" class="nav-link">Gallery</a>
+      <a href="/contact" class="nav-link">Contact Us</a>
+      <a href="/journal" class="nav-btn">Explore Journal →</a>
     </div>
 
     <!-- Mobile Hamburger Toggle -->
@@ -43,304 +42,285 @@
   <!-- Mobile Dropdown Drawer -->
   <div class="mobile-menu" id="mobileNavMenu">
     <a href="/" class="mobile-nav-link active">Home</a>
-    <a href="/articles" class="mobile-nav-link">Browse Articles</a>
-    <a href="/track" class="mobile-nav-link">Track Paper Status</a>
-    <a href="/guidelines" class="mobile-nav-link">Author Guidelines</a>
-    <a href="/#about" class="mobile-nav-link" onclick="toggleMobileNav()">About Us</a>
-    <a href="/#scope" class="mobile-nav-link" onclick="toggleMobileNav()">Scope</a>
-    <a href="/admin" class="mobile-nav-link">🛡️ Admin Portal</a>
-    <a href="/submit" class="mobile-nav-btn">Submit Article →</a>
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>
+    <a href="/events" class="mobile-nav-link">Events &amp; Conferences</a>
+    <a href="/blog" class="mobile-nav-link">Blog &amp; Insights</a>
+    <a href="/gallery" class="mobile-nav-link">Gallery</a>
+    <a href="/contact" class="mobile-nav-link">Contact Us</a>
+    <a href="/journal" class="mobile-nav-btn">Explore Journal →</a>
   </div>
 
-  <!-- ── Hero Section ── -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">🎓 Peer-Reviewed Open Access Scientific Journal</div>
-      <h1 class="hero-title">
-        Publish Your Research<br>
-        <span class="hero-accent">With Global Impact</span>
-      </h1>
-      <p class="hero-subtitle">
-        ASRF Research Platform provides a rigorous double-blind peer-review process and
-        instant open-access publishing for researchers worldwide across multidisciplinary fields.
-      </p>
-
-      <!-- Live Search Bar -->
-      <form action="/articles" method="GET" class="search-form">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input
-            type="text"
-            name="search"
-            class="search-input"
-            placeholder="Search papers by title, author, keyword, DOI..."
-            autocomplete="off"
-          >
-          <button type="submit" class="search-btn">Search</button>
-        </div>
-      </form>
-
-      <div class="hero-actions">
-        <a href="/submit" class="btn-hero-primary">Submit Your Article →</a>
-        <a href="/articles" class="btn-hero-secondary">Browse Published Articles</a>
-        <a href="/track" class="btn-hero-secondary" style="border-style: dashed;">Track Submission Status</a>
-      </div>
-
-      <!-- Live Stats -->
-      <div class="stats-row">
-        <div class="stat-item">
-          <div class="stat-val">500+</div>
-          <div class="stat-lbl">Articles Published</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">1,200+</div>
-          <div class="stat-lbl">Registered Authors</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">48hrs</div>
-          <div class="stat-lbl">Avg. Review Time</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">100%</div>
-          <div class="stat-lbl">Open Access</div>
-        </div>
-      </div>
+  <!-- ── Latest Announcements Marquee Ticker ── -->
+  <div class="news-ticker-bar">
+    <div class="ticker-label">
+      <span>📢</span> Latest Updates
     </div>
-  </section>
-
-  <!-- ── Trust Bar with Academic Registries ── -->
-  <section class="trust-bar">
-    <div class="trust-inner">
-      <span class="trust-item">✓ Crossref DOI Registered</span>
-      <span class="trust-item">✓ Google Scholar Indexed</span>
-      <span class="trust-item">✓ Double-Blind Peer Review</span>
-      <span class="trust-item">✓ ORCID Author Integration</span>
-      <span class="trust-item">✓ Plagiarism Checked (&lt;10%)</span>
-      <span class="trust-item">✓ Blazing Fast Go Engine</span>
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-bullet">●</span> <strong>Call for Papers:</strong> Volume 8, Issue 1 (Submissions Invited for upcoming review cycle)</span>
+      <span class="ticker-item"><span class="ticker-bullet">●</span> <strong>International Conference:</strong> 4th Global Summit on Applied Statistical Sciences &amp; Data Research 2026</span>
+      <span class="ticker-item"><span class="ticker-bullet">●</span> <strong>Open Access Policy:</strong> All published articles are archived with full open access under CC BY-NC 4.0</span>
+      <span class="ticker-item"><span class="ticker-bullet">●</span> <strong>Call for Papers:</strong> Volume 8, Issue 1 (Submissions Invited for upcoming review cycle)</span>
+      <span class="ticker-item"><span class="ticker-bullet">●</span> <strong>International Conference:</strong> 4th Global Summit on Applied Statistical Sciences &amp; Data Research 2026</span>
     </div>
-  </section>
+  </div>
 
-  <!-- ── Recently Published Articles ── -->
-  {{ if .RecentArticles }}
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">Latest Research</div>
-          <h2 class="section-title">Recently Published Articles</h2>
-          <p class="section-subtitle">Discover peer-reviewed papers accepted by our editorial committee</p>
-        </div>
-        <a href="/articles" class="section-link">View all published articles →</a>
-      </div>
+  <!-- ── Hero Carousel Slider ── -->
+  <div class="slider-container">
+    <div class="slider-track" id="heroSliderTrack">
 
-      <div class="articles-grid">
-        {{ range .RecentArticles }}
-        <div class="article-card">
-          <div class="article-meta">
-            <span class="badge badge-published">● Peer-Reviewed</span>
-            <span class="article-date">{{ formatDate .PublishedAt }}</span>
-          </div>
-
-          <div style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
-            {{ if .SubjectArea }}
-            <span class="article-subject" style="margin-bottom: 0;">{{ .SubjectArea }}</span>
-            {{ end }}
-            {{ if .DOI }}
-            <span class="badge-doi">DOI: {{ .DOI }}</span>
-            {{ end }}
-          </div>
-
-          <h3 class="article-title">
-            <a href="/articles/{{ .ID }}" style="color: inherit;">{{ .Title }}</a>
-          </h3>
-
-          <p class="article-abstract">{{ .Abstract }}</p>
-
-          {{ $kws := splitKeywords .Keywords }}
-          {{ if $kws }}
-          <div class="keywords-wrap">
-            {{ range $kws }}
-            <span class="keyword-tag">{{ . }}</span>
-            {{ end }}
-          </div>
-          {{ end }}
-
-          <div class="article-footer">
-            <span class="article-author">👤 {{ .AuthorName }}</span>
-            <a href="/articles/{{ .ID }}" class="article-read-btn">Read paper →</a>
-          </div>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
-
-  <!-- ── How It Works (4 Steps) ── -->
-  <section class="section section-alt" id="workflow">
-    <div class="section-inner">
-      <div class="section-header section-header-center">
-        <div class="section-tag">Submission Process</div>
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">From manuscript submission to global publication in four transparent steps</p>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-icon-box">📝</div>
-          <div class="step-num">Step 01</div>
-          <h3 class="step-title">Submit Manuscript</h3>
-          <p class="step-desc">Upload your research paper with title, abstract, keywords, and author details through our simple upload portal.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-icon-box">🔔</div>
-          <div class="step-num">Step 02</div>
-          <h3 class="step-title">Admin Review Alert</h3>
-          <p class="step-desc">An instant email alert notifies the editorial admin team to review and evaluate the manuscript.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-icon-box">🔍</div>
-          <div class="step-num">Step 03</div>
-          <h3 class="step-title">Editorial Acceptance</h3>
-          <p class="step-desc">Our domain experts perform peer evaluation and acceptance verification within 48–72 hours.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-icon-box">🌍</div>
-          <div class="step-num">Step 04</div>
-          <h3 class="step-title">Global Open Publication</h3>
-          <p class="step-desc">Upon approval, your research goes live worldwide for global indexing, citation, and free download.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Scope & Subject Areas ── -->
-  <section class="section" id="scope">
-    <div class="section-inner">
-      <div class="section-header section-header-center">
-        <div class="section-tag">Academic Disciplines</div>
-        <h2 class="section-title">Scope &amp; Subject Areas</h2>
-        <p class="section-subtitle">We publish research across a comprehensive spectrum of disciplines</p>
-      </div>
-
-      <div class="scope-grid">
-        <a href="/articles?subject=Computer+Science" class="scope-card">
-          <span class="scope-icon">💻</span>
-          <span class="scope-title">Computer Science</span>
-        </a>
-        <a href="/articles?subject=Artificial+Intelligence" class="scope-card">
-          <span class="scope-icon">🧠</span>
-          <span class="scope-title">Artificial Intelligence</span>
-        </a>
-        <a href="/articles?subject=Medical+Sciences" class="scope-card">
-          <span class="scope-icon">🏥</span>
-          <span class="scope-title">Medical Sciences</span>
-        </a>
-        <a href="/articles?subject=Physics+%26+Astronomy" class="scope-card">
-          <span class="scope-icon">🔭</span>
-          <span class="scope-title">Physics &amp; Astronomy</span>
-        </a>
-        <a href="/articles?subject=Economics+%26+Finance" class="scope-card">
-          <span class="scope-icon">💰</span>
-          <span class="scope-title">Economics &amp; Finance</span>
-        </a>
-        <a href="/articles?subject=Environmental+Science" class="scope-card">
-          <span class="scope-icon">🌿</span>
-          <span class="scope-title">Environmental Science</span>
-        </a>
-        <a href="/articles?subject=Chemistry" class="scope-card">
-          <span class="scope-icon">⚗️</span>
-          <span class="scope-title">Chemistry</span>
-        </a>
-        <a href="/articles?subject=Biology+%26+Life+Sciences" class="scope-card">
-          <span class="scope-icon">🧬</span>
-          <span class="scope-title">Biology &amp; Life Sciences</span>
-        </a>
-        <a href="/articles?subject=Electrical+Engineering" class="scope-card">
-          <span class="scope-icon">⚡</span>
-          <span class="scope-title">Electrical Engineering</span>
-        </a>
-        <a href="/articles?subject=Civil+Engineering" class="scope-card">
-          <span class="scope-icon">🏗️</span>
-          <span class="scope-title">Civil Engineering</span>
-        </a>
-        <a href="/articles?subject=Mathematics" class="scope-card">
-          <span class="scope-icon">📐</span>
-          <span class="scope-title">Mathematics</span>
-        </a>
-        <a href="/articles?subject=Social+Sciences" class="scope-card">
-          <span class="scope-icon">📚</span>
-          <span class="scope-title">Social Sciences</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Why Choose ASRF ── -->
-  <section class="section section-alt" id="about">
-    <div class="section-inner">
-      <div class="section-header section-header-center">
-        <div class="section-tag">About The Foundation</div>
-        <h2 class="section-title">Why Choose ASRF?</h2>
-        <p class="section-subtitle">Built specifically for researchers who demand speed, integrity, and global reach</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3 class="feature-title">Rapid Peer Review</h3>
-          <p class="feature-desc">Receive editorial feedback within 48–72 hours by dedicated domain specialists, eliminating months of waiting.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🌍</div>
-          <h3 class="feature-title">100% Open Access</h3>
-          <p class="feature-desc">Your research is freely available to students, academics, and industry innovators worldwide, maximizing citation index.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3 class="feature-title">High Speed &amp; Reliability</h3>
-          <p class="feature-desc">Powered by high-performance compiled Go technology for instant search, download speeds, and 99.99% uptime.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">📧</div>
-          <h3 class="feature-title">Automated Admin Alerts</h3>
-          <p class="feature-desc">Every manuscript submission triggers automated notification to the admin board for immediate tracking and review.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">📑</div>
-          <h3 class="feature-title">DOI &amp; Citation Ready</h3>
-          <p class="feature-desc">Articles receive standard academic metadata formatting with support for APA, IEEE, and BibTeX citation export.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3 class="feature-title">Plagiarism Checked</h3>
-          <p class="feature-desc">Stringent originality checks ensure that published content meets the highest ethical research benchmarks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Ready to Submit CTA ── -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="guidelines-cta">
-        <div class="guidelines-left">
-          <h2 class="guidelines-title">Ready to Publish Your Research?</h2>
-          <p class="guidelines-desc">
-            Submit your manuscript today. Our editorial board reviews submissions on a rolling basis with fast-track editorial acceptance.
+      <!-- Slide 1 -->
+      <div class="slider-slide">
+        <div class="slide-inner">
+          <div class="slide-tag">🏛️ Scholarly Excellence &amp; Academic Integrity</div>
+          <h1 class="slide-title">
+            Advancing Statistical Inquiry &amp;<br>Interdisciplinary Research
+          </h1>
+          <p class="slide-desc">
+            Analize Statistice Research Foundation (ASRF) is committed to promoting rigorous, peer-reviewed academic research, empirical analytics, and transformative scientific collaboration globally.
           </p>
+          <div class="slide-actions">
+            <a href="/about" class="btn-primary" style="padding: 13px 28px; font-size: 15px;">Discover Our Mission →</a>
+            <a href="/journal" class="btn-secondary" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff; padding: 13px 26px; font-size: 15px;">Browse Journal Hub</a>
+          </div>
         </div>
-        <div class="guidelines-actions">
-          <a href="/guidelines" class="btn-outline-white">Read Guidelines</a>
-          <a href="/submit" class="btn-white">Start Submission →</a>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slider-slide">
+        <div class="slide-inner">
+          <div class="slide-tag">📚 Double-Blind Peer-Reviewed Publications</div>
+          <h1 class="slide-title">
+            Open Access Research Journal<br>Connecting Global Scholars
+          </h1>
+          <p class="slide-desc">
+            Explore diverse research contributions across Mathematical Statistics, Computing, Economic Systems, Social Sciences, and Healthcare Analytics with open academic access.
+          </p>
+          <div class="slide-actions">
+            <a href="/journal#current-issue" class="btn-primary" style="padding: 13px 28px; font-size: 15px;">View Current Issue →</a>
+            <a href="/journal#guidelines" class="btn-secondary" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff; padding: 13px 26px; font-size: 15px;">Author Guidelines</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slider-slide">
+        <div class="slide-inner">
+          <div class="slide-tag">🌐 Global Seminars &amp; Academic Symposia</div>
+          <h1 class="slide-title">
+            Annual Research Conferences &amp;<br>Scholastic Workshops
+          </h1>
+          <p class="slide-desc">
+            Participate in foundational workshops, methodology symposia, and interdisciplinary dialogues bringing together researchers, professors, and industry thought leaders.
+          </p>
+          <div class="slide-actions">
+            <a href="/events" class="btn-primary" style="padding: 13px 28px; font-size: 15px;">Upcoming Events &amp; Summits →</a>
+            <a href="/gallery" class="btn-secondary" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff; padding: 13px 26px; font-size: 15px;">View Event Gallery</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Slider Nav Buttons -->
+    <button class="slider-btn-prev" onclick="prevSlide()" aria-label="Previous Slide">‹</button>
+    <button class="slider-btn-next" onclick="nextSlide()" aria-label="Next Slide">›</button>
+
+    <!-- Slider Dots -->
+    <div class="slider-dots" id="heroSliderDots"></div>
+  </div>
+
+  <!-- ── Foundation Highlights Bar ── -->
+  <section style="background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 28px 24px;">
+    <div class="container">
+      <div class="stats-grid-4">
+        <div class="stat-box">
+          <div class="stat-box-val">100%</div>
+          <div class="stat-box-lbl">Open Access Repository</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val">Double-Blind</div>
+          <div class="stat-box-lbl">Peer-Review Standard</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val">24+</div>
+          <div class="stat-box-lbl">Disciplinary Scope Areas</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val">Global</div>
+          <div class="stat-box-lbl">Academic Reach &amp; Indexing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About Section Teaser ── -->
+  <section class="section" style="background: var(--bg-page);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center;" class="contact-grid">
+        <div>
+          <span class="dummy-tag">ℹ️ [About Description Placeholder — Customizable by Client]</span>
+          <h2 style="font-size: 32px; font-weight: 800; color: var(--text-dark); margin: 12px 0 16px; line-height: 1.3;">
+            Dedicated to Advancing Rigorous Statistical Science &amp; Multidisciplinary Research
+          </h2>
+          <p style="font-size: 15.5px; line-height: 1.8; color: var(--text-body); margin-bottom: 18px;">
+            The <strong>Analize Statistice Research Foundation (ASRF)</strong> is an independent academic and scholastic organization established to elevate the quality of theoretical and applied research. We provide researchers, academics, and institutional scholars with an esteemed platform for dissemination.
+          </p>
+          <p style="font-size: 14.5px; line-height: 1.75; color: var(--text-muted); margin-bottom: 24px;">
+            Our mission encompasses empirical rigor, ethical research dissemination, and cross-border knowledge exchange. Through our journals, annual summits, and methodology seminars, we foster critical evidence-based thinking.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="/about" class="btn-primary" style="width: auto; padding: 11px 22px; font-size: 14px;">Read Full Profile &amp; Mission →</a>
+            <a href="/contact" class="btn-secondary" style="width: auto; padding: 11px 22px; font-size: 14px;">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 32px; background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 16px; border-bottom: 2px solid var(--primary-subtle); padding-bottom: 8px;">
+            Core Pillars of ASRF
+          </h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 16px;">
+            <li style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="font-size: 18px;">🎯</span>
+              <div>
+                <strong style="color: var(--text-dark); font-size: 14.5px;">Methodological Precision:</strong>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Promoting verified statistical tools, reproducible analysis, and sound mathematical frameworks.</p>
+              </div>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="font-size: 18px;">📖</span>
+              <div>
+                <strong style="color: var(--text-dark); font-size: 14.5px;">Scholarly Openness:</strong>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Removing cost barriers so high-impact research is freely discoverable by educators and institutions worldwide.</p>
+              </div>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="font-size: 18px;">🤝</span>
+              <div>
+                <strong style="color: var(--text-dark); font-size: 14.5px;">Institutional Synergy:</strong>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Partnering with universities, research councils, and symposiums to bridge academia and practical policy.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Journal Showcase Banner ── -->
+  <section class="section" style="background: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <span class="badge" style="background: var(--primary-subtle); color: var(--primary); padding: 6px 16px; font-size: 12px; font-weight: 700;">
+          ASRF RESEARCH JOURNAL
+        </span>
+        <h2 style="font-size: 32px; font-weight: 800; color: var(--text-dark); margin: 12px 0 8px;">
+          Explore Our Peer-Reviewed Journal Portal
+        </h2>
+        <p style="font-size: 15px; color: var(--text-muted);">
+          Inspired by top academic research journals, our multi-section Journal Hub features Aim &amp; Scope, Editorial Committee, Current Issues, Archives, and Author Guidelines.
+        </p>
+      </div>
+
+      <!-- Quick Subnav Highlights (Links to Journal sub-menu) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-bottom: 32px;">
+        <a href="/journal#aim-scope" class="card" style="text-decoration: none; padding: 22px; transition: transform 0.2s; border: 1px solid var(--border-color);">
+          <div style="font-size: 28px; margin-bottom: 8px;">🎯</div>
+          <h3 style="font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">Aim &amp; Scope</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Multidisciplinary domains, statistical sciences, empirical analytics &amp; humanities.</p>
+          <span style="font-size: 12px; font-weight: 600; color: var(--primary-light); margin-top: 8px; display: inline-block;">View Details →</span>
+        </a>
+
+        <a href="/journal#editorial-board" class="card" style="text-decoration: none; padding: 22px; transition: transform 0.2s; border: 1px solid var(--border-color);">
+          <div style="font-size: 28px; margin-bottom: 8px;">👥</div>
+          <h3 style="font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">Editorial Board</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Distinguished professors, peer reviewers, and advisory board members.</p>
+          <span style="font-size: 12px; font-weight: 600; color: var(--primary-light); margin-top: 8px; display: inline-block;">Meet the Board →</span>
+        </a>
+
+        <a href="/journal#current-issue" class="card" style="text-decoration: none; padding: 22px; transition: transform 0.2s; border: 1px solid var(--border-color);">
+          <div style="font-size: 28px; margin-bottom: 8px;">📖</div>
+          <h3 style="font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">Current Issue</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Browse the latest volume of peer-reviewed articles and abstracts.</p>
+          <span style="font-size: 12px; font-weight: 600; color: var(--primary-light); margin-top: 8px; display: inline-block;">Read Issue →</span>
+        </a>
+
+        <a href="/journal#guidelines" class="card" style="text-decoration: none; padding: 22px; transition: transform 0.2s; border: 1px solid var(--border-color);">
+          <div style="font-size: 28px; margin-bottom: 8px;">📝</div>
+          <h3 style="font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">Author Guidelines</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Formatting standards, citation styles, ethics, and submission policy.</p>
+          <span style="font-size: 12px; font-weight: 600; color: var(--primary-light); margin-top: 8px; display: inline-block;">Check Guidelines →</span>
+        </a>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="/journal" class="btn-primary" style="display: inline-flex; width: auto; padding: 13px 32px; font-size: 15px;">
+          Open Complete Journal Hub &amp; Secondary Menu →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Upcoming Events Teaser ── -->
+  <section class="section" style="background: var(--bg-page);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="badge" style="background: #e0f2fe; color: #0284c7; padding: 6px 14px; font-size: 12px; font-weight: 700;">
+            EVENTS &amp; CONFERENCES
+          </span>
+          <h2 style="font-size: 30px; font-weight: 800; color: var(--text-dark); margin-top: 8px;">
+            Conferences &amp; Academic Seminars
+          </h2>
+        </div>
+        <a href="/events" class="section-link" style="font-size: 14px; font-weight: 700;">View All Events →</a>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-header">
+            <span class="badge" style="background: #dcfce7; color: #15803d; font-size: 11px;">● Upcoming</span>
+            <div class="event-date-box">
+              <div class="event-date-day">14</div>
+              <div class="event-date-month">Nov 2026</div>
+            </div>
+          </div>
+          <div class="event-body">
+            <div class="event-meta">
+              <span>📍 New Delhi &amp; Virtual (Hybrid)</span>
+              <span>🎓 National Symposium</span>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">
+              National Symposium on Statistical Computing and AI Inferences
+            </h3>
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+              A premier academic gathering uniting statistical analysts, university professors, and data engineers to discuss contemporary computational methodologies.
+            </p>
+            <a href="/events" class="btn-secondary" style="padding: 8px 16px; font-size: 12.5px; width: auto; display: inline-block;">Details &amp; Schedule →</a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-header">
+            <span class="badge" style="background: #e0e7ff; color: #3730a3; font-size: 11px;">● Academic Workshop</span>
+            <div class="event-date-box">
+              <div class="event-date-day">28</div>
+              <div class="event-date-month">Dec 2026</div>
+            </div>
+          </div>
+          <div class="event-body">
+            <div class="event-meta">
+              <span>📍 Online Interactive Webinar</span>
+              <span>⏳ 3-Day Masterclass</span>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">
+              Advanced Research Methodology &amp; Quantitative Paper Drafting
+            </h3>
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+              Hands-on training designed for doctoral candidates and early-career researchers on structuring high-impact empirical papers for indexed journals.
+            </p>
+            <a href="/events" class="btn-secondary" style="padding: 8px 16px; font-size: 12.5px; width: auto; display: inline-block;">Details &amp; Schedule →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -351,32 +331,58 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/static/images/logo.png" alt="ASRF" class="footer-logo">
-          <div>
-            <div class="footer-brand-name">Analize Statistice Research Foundation</div>
-            <div class="footer-brand-tagline">Advancing Science Through Open Access Publishing</div>
+          <div class="nav-brand-group" style="margin-bottom: 14px;">
+            <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+            <div class="nav-titles">
+              <span class="nav-title" style="color: #ffffff;">Analize Statistice Research Foundation</span>
+              <span class="nav-tagline" style="color: #94a3b8;">Scholarly Excellence &amp; Open Access Publishing</span>
+            </div>
           </div>
+          <p style="color: #94a3b8; font-size: 13.5px; line-height: 1.7; max-width: 440px;">
+            A premier non-profit research foundation dedicated to statistical innovation, interdisciplinary academic dissemination, and global scholastic cooperation.
+          </p>
         </div>
+
         <div class="footer-links-group">
-          <div>
-            <div class="footer-col-title">Platform</div>
-            <a href="/articles" class="footer-link">Browse Articles</a>
-            <a href="/submit" class="footer-link">Submit Article</a>
-            <a href="/track" class="footer-link">Track Paper Status</a>
-            <a href="/admin" class="footer-link">Admin Portal</a>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Navigation</h4>
+            <a href="/" class="footer-link">Home</a>
+            <a href="/about" class="footer-link">About the Foundation</a>
+            <a href="/journal" class="footer-link">Journal &amp; Issues</a>
+            <a href="/events" class="footer-link">Academic Events</a>
+            <a href="/blog" class="footer-link">Scholarly Blog</a>
+            <a href="/gallery" class="footer-link">Photo Gallery</a>
+            <a href="/contact" class="footer-link">Contact Us</a>
           </div>
-          <div>
-            <div class="footer-col-title">Foundation</div>
-            <a href="/guidelines" class="footer-link">Author Guidelines</a>
-            <a href="/#about" class="footer-link">About ASRF</a>
-            <a href="/#scope" class="footer-link">Subject Areas</a>
-            <a href="/#workflow" class="footer-link">Publication Workflow</a>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Journal Sections</h4>
+            <a href="/journal#aim-scope" class="footer-link">Aim &amp; Scope</a>
+            <a href="/journal#editorial-board" class="footer-link">Editorial Board</a>
+            <a href="/journal#current-issue" class="footer-link">Current Issue</a>
+            <a href="/journal#archives" class="footer-link">Past Archives</a>
+            <a href="/journal#guidelines" class="footer-link">Author Guidelines</a>
+            <a href="/journal#ethics" class="footer-link">Publication Ethics</a>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Contact &amp; Advisory</h4>
+            <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin-bottom: 8px;">
+              <strong>Office:</strong><br>
+              Analize Statistice Research Foundation<br>
+              [Address Placeholder to be provided by Client]
+            </p>
+            <p style="color: #94a3b8; font-size: 13px; line-height: 1.6;">
+              <strong>Email:</strong><br>
+              contact@asrf-foundation.org
+            </p>
           </div>
         </div>
       </div>
+
       <div class="footer-bottom">
         <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
-        <p>Open Access • Peer Reviewed • Fast Go Architecture</p>
+        <p>Open Access • Peer-Reviewed • Non-Profit Academic Platform</p>
       </div>
     </div>
   </footer>

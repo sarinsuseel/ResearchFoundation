@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Academic Research &amp; Scholarly Publication Platform</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/journal" class="nav-link">Journal</a>
+      <a href="/events" class="nav-link">Event</a>
+      <a href="/blog" class="nav-link active">Blog</a>
+      <a href="/gallery" class="nav-link">Gallery</a>
+      <a href="/contact" class="nav-link">Contact Us</a>
+      <a href="/journal" class="nav-btn">Explore Journal →</a>
+    </div>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>
+    <a href="/events" class="mobile-nav-link">Events &amp; Conferences</a>
+    <a href="/blog" class="mobile-nav-link active">Blog &amp; Insights</a>
+    <a href="/gallery" class="mobile-nav-link">Gallery</a>
+    <a href="/contact" class="mobile-nav-link">Contact Us</a>
+    <a href="/journal" class="mobile-nav-btn">Explore Journal →</a>
+  </div>
+
+  <!-- Header Banner -->
+  <div class="journal-header-banner">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <span class="badge" style="background: rgba(255,255,255,0.18); color: #ffffff; padding: 6px 16px; font-size: 12px; margin-bottom: 10px; display: inline-block;">
+        ACADEMIC PERSPECTIVES &amp; COMMENTARY
+      </span>
+      <h1 style="font-size: 34px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+        Scholarly Blog &amp; Research Insights
+      </h1>
+      <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+        Thought leadership, statistical methodology commentary, best practices in peer-reviewed publishing, and academic foundation updates.
+      </p>
+    </div>
+  </div>
+
+  <main style="max-width: 1140px; margin: 40px auto; padding: 0 24px;">
+
+    <div style="margin-bottom: 24px;">
+      <span class="dummy-tag">ℹ️ [Blog Articles &amp; Insights — Placeholder to be provided by Client]</span>
+      <h2 style="font-size: 24px; font-weight: 800; color: var(--text-dark); margin-top: 6px;">Featured Scholarly Articles</h2>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+
+      <!-- Blog 1 -->
+      <article class="blog-card">
+        <div class="blog-thumb" style="background: linear-gradient(135deg, #1e3a5f, #0f172a);">
+          <span>📊</span>
+        </div>
+        <div class="blog-card-body">
+          <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+            <span class="badge" style="background: #e0f2fe; color: #0284c7; font-size: 11px;">Statistical Science</span>
+            <span style="font-size: 12px; color: var(--text-light); margin-left: auto;">5 min read</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">
+            Addressing P-Hacking and Replicability in Contemporary Empirical Science
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+            A critical examination of selective reporting biases and the growing adoption of pre-registration protocols to restore empirical integrity.
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 12px;">
+            <span style="font-size: 12.5px; color: var(--text-dark); font-weight: 600;">Dr. [Author Name - Placeholder]</span>
+            <span style="font-size: 12px; color: var(--text-light);">12 Oct 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog 2 -->
+      <article class="blog-card">
+        <div class="blog-thumb" style="background: linear-gradient(135deg, #164e63, #0f172a);">
+          <span>🤖</span>
+        </div>
+        <div class="blog-card-body">
+          <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+            <span class="badge" style="background: #e0e7ff; color: #3730a3; font-size: 11px;">Artificial Intelligence</span>
+            <span style="font-size: 12px; color: var(--text-light); margin-left: auto;">7 min read</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">
+            Ethical Boundaries of Generative Models in Academic Manuscript Drafting
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+            Analyzing COPE and international journal standards on AI attribution, transparent disclosure, and authorial accountability.
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 12px;">
+            <span style="font-size: 12.5px; color: var(--text-dark); font-weight: 600;">Prof. [Author Name - Placeholder]</span>
+            <span style="font-size: 12px; color: var(--text-light);">28 Sep 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog 3 -->
+      <article class="blog-card">
+        <div class="blog-thumb" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+          <span>📈</span>
+        </div>
+        <div class="blog-card-body">
+          <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+            <span class="badge" style="background: #fef3c7; color: #92400e; font-size: 11px;">Econometrics</span>
+            <span style="font-size: 12px; color: var(--text-light); margin-left: auto;">6 min read</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">
+            Multivariate Volatility Forecasting Under Sudden Macroeconomic Shocks
+          </h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+            How hybrid GARCH and Markov-switching frameworks assist central banking authorities in stress-testing financial reserves.
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 12px;">
+            <span style="font-size: 12.5px; color: var(--text-dark); font-weight: 600;">Dr. [Author Name - Placeholder]</span>
+            <span style="font-size: 12px; color: var(--text-light);">15 Aug 2026</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Scholarly Blog • Research Perspectives • Academic Commentary</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

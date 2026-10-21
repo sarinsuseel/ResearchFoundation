@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand-group">
+      <img src="/static/images/logo.png" alt="ASRF Logo" class="nav-logo" onerror="this.src='/static/images/fallback-logo.svg'">
+      <div class="nav-titles">
+        <span class="nav-title">Analize Statistice Research Foundation</span>
+        <span class="nav-tagline">Academic Research &amp; Scholarly Publication Platform</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/journal" class="nav-link">Journal</a>
+      <a href="/events" class="nav-link">Event</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/gallery" class="nav-link active">Gallery</a>
+      <a href="/contact" class="nav-link">Contact Us</a>
+      <a href="/journal" class="nav-btn">Explore Journal →</a>
+    </div>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-menu" id="mobileNavMenu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>
+    <a href="/events" class="mobile-nav-link">Events &amp; Conferences</a>
+    <a href="/blog" class="mobile-nav-link">Blog &amp; Insights</a>
+    <a href="/gallery" class="mobile-nav-link active">Gallery</a>
+    <a href="/contact" class="mobile-nav-link">Contact Us</a>
+    <a href="/journal" class="mobile-nav-btn">Explore Journal →</a>
+  </div>
+
+  <!-- Header Banner -->
+  <div class="journal-header-banner">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <span class="badge" style="background: rgba(255,255,255,0.18); color: #ffffff; padding: 6px 16px; font-size: 12px; margin-bottom: 10px; display: inline-block;">
+        SCHOLASTIC ARCHIVE &amp; MOMENTS
+      </span>
+      <h1 style="font-size: 34px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+        Foundation Photo Gallery
+      </h1>
+      <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+        Capturing academic milestones, keynote convocations, national symposiums, and research honor ceremonies.
+      </p>
+    </div>
+  </div>
+
+  <main style="max-width: 1140px; margin: 40px auto; padding: 0 24px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+      <!-- Filter Chips -->
+      <div class="filter-chips">
+        <button class="filter-chip active" onclick="filterGallery('all', this)">All Moments</button>
+        <button class="filter-chip" onclick="filterGallery('conferences', this)">Conferences</button>
+        <button class="filter-chip" onclick="filterGallery('seminars', this)">Seminars &amp; Workshops</button>
+        <button class="filter-chip" onclick="filterGallery('awards', this)">Award Ceremonies</button>
+      </div>
+
+      <span class="dummy-tag">ℹ️ [Photo Placeholders — Client can upload actual event photos]</span>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+
+      <div class="gallery-card" data-category="conferences">
+        <div class="gallery-card-inner" style="background: linear-gradient(135deg, #1e3a8a, #0f172a);">
+          <span>🏛️</span>
+          <div class="gallery-overlay">
+            <div class="gallery-title">Inaugural Session: Global Statistical Summit</div>
+            <div class="gallery-cat">Conference • 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="seminars">
+        <div class="gallery-card-inner" style="background: linear-gradient(135deg, #065f46, #0f172a);">
+          <span>📊</span>
+          <div class="gallery-overlay">
+            <div class="gallery-title">Computational Workshop on Multivariate Analytics</div>
+            <div class="gallery-cat">Workshop • 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="awards">
+        <div class="gallery-card-inner" style="background: linear-gradient(135deg, #854d0e, #0f172a);">
+          <span>🏆</span>
+          <div class="gallery-overlay">
+            <div class="gallery-title">Conferral of Young Statistical Scientist Award</div>
+            <div class="gallery-cat">Award Ceremony • 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="conferences">
+        <div class="gallery-card-inner" style="background: linear-gradient(135deg, #4c1d95, #0f172a);">
+          <span>🎤</span>
+          <div class="gallery-overlay">
+            <div class="gallery-title">Keynote Address on Econometric Time Series</div>
+            <div class="gallery-cat">Keynote Session • 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="seminars">
+        <div class="gallery-card-inner" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+          <span>👥</span>
+          <div class="gallery-overlay">
+            <div class="gallery-title">Editorial Board &amp; Advisory Council Meeting</div>
+            <div class="gallery-cat">Board Meeting • 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-category="conferences">
+        <div class="gallery-card-inner" style="background: linear-gradient(135deg, #155e75, #0f172a);">
+          <span>📚</span>
+          <div class="gallery-overlay">
+            <div class="gallery-title">Annual Journal Release &amp; Research Catalog</div>
+            <div class="gallery-cat">Publication Launch • 2025</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>© 2026 Analize Statistice Research Foundation (ASRF). All rights reserved.</p>
+        <p>Foundation Gallery • Academic Milestones • Scholarly Convocations</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
