@@ -79,6 +79,30 @@ function initHeroSlider() {
   if (container) {
     container.addEventListener('mouseenter', () => clearInterval(slideInterval));
     container.addEventListener('mouseleave', () => startAutoSlide());
+
+    // Mobile touch swipe gestures
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 45) {
+        if (diff > 0) {
+          window.nextSlide();
+        } else {
+          window.prevSlide();
+        }
+      }
+    }
   }
 
   startAutoSlide();

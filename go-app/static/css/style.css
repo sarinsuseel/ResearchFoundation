@@ -1772,20 +1772,38 @@ a {
 
 .slider-slide {
   min-width: 100%;
-  padding: 85px 36px 90px;
+  padding: 100px 36px 110px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slider-slide.slide-1 {
+  background: linear-gradient(135deg, rgba(8, 19, 38, 0.88) 0%, rgba(16, 42, 82, 0.82) 45%, rgba(27, 58, 107, 0.86) 100%),
+              url('/static/images/slide1-research.jpg') center/cover no-repeat;
+}
+
+.slider-slide.slide-2 {
+  background: linear-gradient(135deg, rgba(8, 19, 38, 0.88) 0%, rgba(16, 42, 82, 0.82) 45%, rgba(27, 58, 107, 0.86) 100%),
+              url('/static/images/slide2-journal.jpg') center/cover no-repeat;
+}
+
+.slider-slide.slide-3 {
+  background: linear-gradient(135deg, rgba(8, 19, 38, 0.88) 0%, rgba(16, 42, 82, 0.82) 45%, rgba(27, 58, 107, 0.86) 100%),
+              url('/static/images/slide3-conference.jpg') center/cover no-repeat;
 }
 
 .slider-slide::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.18) 0%, transparent 60%),
-              radial-gradient(circle at 15% 85%, rgba(37, 99, 235, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.15) 0%, transparent 60%),
+              radial-gradient(circle at 15% 85%, rgba(37, 99, 235, 0.12) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -2217,11 +2235,16 @@ a {
 }
 
 @media (max-width: 768px) {
+  .slider-slide {
+    padding: 70px 20px 80px;
+  }
   .slide-title {
-    font-size: 32px;
+    font-size: 30px;
+    line-height: 1.28;
   }
   .slide-desc {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.65;
   }
   .slider-btn-prev, .slider-btn-next {
     display: none;
@@ -2229,5 +2252,51 @@ a {
   .journal-subnav-sticky {
     top: 60px;
   }
+  .subnav-tab-btn {
+    padding: 13px 15px;
+    font-size: 13px;
+  }
+  .news-ticker-bar {
+    font-size: 12.5px;
+  }
+  .ticker-label {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
 }
+
+@media (max-width: 480px) {
+  .slider-slide {
+    padding: 55px 16px 70px;
+  }
+  .slide-title {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  .slide-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+  .slide-tag {
+    font-size: 11px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+  }
+  .slide-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .slide-actions a {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .subnav-tab-btn {
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+}
+
 
