@@ -31,6 +31,12 @@
       <a href="/gallery" class="nav-link">Gallery</a>
       <a href="/contact" class="nav-link">Contact Us</a>
       <a href="/journal#email-submission" class="nav-btn">Submit Manuscript →</a>
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
+      </div>
     </div>
 
     <!-- Mobile Hamburger Toggle -->
@@ -41,6 +47,14 @@
 
   <!-- Mobile Dropdown Drawer -->
   <div class="mobile-menu" id="mobileNavMenu">
+    <div class="mobile-lang-box">
+      <span class="mobile-lang-label">🌐 ഭാഷ / Language</span>
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
+      </div>
+    </div>
     <a href="/" class="mobile-nav-link active">Home</a>
     <a href="/about" class="mobile-nav-link">About</a>
     <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>

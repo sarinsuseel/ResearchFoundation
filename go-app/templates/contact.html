@@ -29,16 +29,30 @@
       <a href="/blog" class="nav-link">Blog</a>
       <a href="/gallery" class="nav-link">Gallery</a>
       <a href="/contact" class="nav-link active">Contact Us</a>
-      <a href="/journal" class="nav-btn">Explore Journal →</a>
+      <a href="/journal#email-submission" class="nav-btn">Submit Manuscript →</a>
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
+      </div>
     </div>
 
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav()">
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" onclick="toggleMobileNav(event)">
       <span class="hamburger-icon">☰</span>
     </button>
   </nav>
 
   <!-- Mobile Dropdown Drawer -->
   <div class="mobile-menu" id="mobileNavMenu">
+    <div class="mobile-lang-box">
+      <span class="mobile-lang-label">🌐 ഭാഷ / Language</span>
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="ml" onclick="setLanguage('ml')">മലയാളം</button>
+      </div>
+    </div>
     <a href="/" class="mobile-nav-link">Home</a>
     <a href="/about" class="mobile-nav-link">About</a>
     <a href="/journal" class="mobile-nav-link">Journal &amp; Issues</a>
@@ -46,7 +60,7 @@
     <a href="/blog" class="mobile-nav-link">Blog &amp; Insights</a>
     <a href="/gallery" class="mobile-nav-link">Gallery</a>
     <a href="/contact" class="mobile-nav-link active">Contact Us</a>
-    <a href="/journal" class="mobile-nav-btn">Explore Journal →</a>
+    <a href="/journal#email-submission" class="mobile-nav-btn">Submit Manuscript →</a>
   </div>
 
   <!-- Header Banner -->
