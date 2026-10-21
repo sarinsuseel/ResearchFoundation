@@ -76,7 +76,10 @@
   <!-- ── 2nd Menu Bar (Sticky Secondary Sub-Navigation) ── -->
   <div class="journal-subnav-sticky">
     <div class="journal-subnav-container">
-      <button class="subnav-tab-btn active" data-tab="aim-scope" onclick="switchJournalTab('aim-scope')">
+      <button class="subnav-tab-btn highlight-email-tab active" data-tab="email-submission" onclick="switchJournalTab('email-submission')">
+        <span>📤</span> Submit via Email
+      </button>
+      <button class="subnav-tab-btn" data-tab="aim-scope" onclick="switchJournalTab('aim-scope')">
         <span>🎯</span> Aim &amp; Scope
       </button>
       <button class="subnav-tab-btn" data-tab="editorial-board" onclick="switchJournalTab('editorial-board')">
@@ -109,8 +112,117 @@
   <!-- ── Journal Tab Content Panels ── -->
   <main style="max-width: 1160px; margin: 36px auto; padding: 0 24px;">
 
+    <!-- 0. Tab: Submit via Email (Primary Fast-Track Workflow) -->
+    <section class="journal-tab-panel active" id="tab-email-submission">
+      <div class="email-submission-box">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <span class="badge" style="background: #2563eb; color: #ffffff; font-size: 11.5px; font-weight: 700; padding: 5px 14px; margin-bottom: 8px; display: inline-block;">
+              DIRECT EDITORIAL EMAIL SUBMISSION
+            </span>
+            <h2 style="font-size: 28px; font-weight: 800; color: #1e3a8a; margin: 4px 0 8px;">
+              Submit Your Manuscript to Our Chief Editor &amp; Owner
+            </h2>
+            <p style="font-size: 15px; color: #334155; max-width: 760px; line-height: 1.7;">
+              To make publication simple, authors submit their research papers directly to our Foundation Owner and Editorial Secretariat via email. Once received, our editorial committee evaluates your paper and reverts directly through email with peer-review feedback, acceptance, and publication status.
+            </p>
+          </div>
+        </div>
+
+        <!-- Email Badge & Action Buttons -->
+        <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 26px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);">
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; color: #64748b; font-weight: 700; margin-bottom: 6px;">
+            Official Editorial &amp; Owner Submission Address
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+            <div style="font-size: 22px; font-weight: 800; color: #1e3a8a; letter-spacing: -0.3px;">
+              ✉️ clashergally@gmail.com
+              <div style="font-size: 12px; color: #64748b; font-weight: normal; margin-top: 2px;">
+                [Owner / Editorial Email Placeholder: clashergally@gmail.com / editor@asrf-foundation.org]
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=clashergally@gmail.com&su=Manuscript%20Submission%20-%20ASRF%20Journal&body=Respected%20Editor-in-Chief%20%2F%20Foundation%20Director,%0A%0APlease%20find%20attached%20our%20research%20manuscript%20for%20peer-review%20and%20publication%20in%20ASRF%20Journal.%0A%0A1.%20Manuscript%20Title:%20%0A2.%20Subject%20Area:%20%0A3.%20Author%20Name(s)%20%26%20Affiliation:%20%0A4.%20Corresponding%20Author%20Email%20%26%20Phone:%20%0A5.%20Abstract%20Summary:%20%0A%0AKindly%20acknowledge%20receipt%20and%20initiate%20the%20review%20process.%0A%0ASincerely,%0A[Author%20Name]" 
+                 target="_blank" 
+                 class="btn-gmail">
+                <span>📧</span> Open Directly in Gmail →
+              </a>
+
+              <a href="mailto:clashergally@gmail.com?subject=Manuscript%20Submission%20-%20ASRF%20Journal" 
+                 class="btn-secondary" 
+                 style="padding: 12px 20px; font-size: 14px; width: auto; font-weight: 600;">
+                Default Email App
+              </a>
+
+              <button onclick="copyToClipboard('clashergally@gmail.com', this)" 
+                      class="btn-secondary" 
+                      style="padding: 12px 18px; font-size: 14px; width: auto;">
+                📋 Copy Email
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Step Review & Acceptance Workflow -->
+        <h3 style="font-size: 19px; font-weight: 800; color: #1e3a8a; margin-bottom: 4px;">
+          How Our Email Review &amp; Publication Process Works
+        </h3>
+        <p style="font-size: 13.5px; color: #64748b; margin-bottom: 18px;">
+          From email dispatch to final indexing, here is what happens when you send your manuscript:
+        </p>
+
+        <div class="workflow-grid">
+          <div class="workflow-step-card">
+            <div class="workflow-step-number">1</div>
+            <strong style="font-size: 15px; color: var(--text-dark);">Email Your Paper</strong>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+              Author emails their Word (<code>.docx</code>) or PDF manuscript with Title, Author details, and Abstract.
+            </p>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="workflow-step-number">2</div>
+            <strong style="font-size: 15px; color: var(--text-dark);">Scope &amp; Plagiarism Check</strong>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+              Editorial board audits originality (&lt;10% similarity) and methodological scope within 24–48 hours.
+            </p>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="workflow-step-number">3</div>
+            <strong style="font-size: 15px; color: var(--text-dark);">Double-Blind Peer Review</strong>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+              Manuscript is assigned to 2 independent academic reviewers for deep scholastic evaluation.
+            </p>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="workflow-step-number">4</div>
+            <strong style="font-size: 15px; color: var(--text-dark);">Email Acceptance &amp; Publication</strong>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+              Author receives formal Acceptance Letter via email. The paper is assigned a DOI and published online live!
+            </p>
+          </div>
+        </div>
+
+        <!-- Checklist -->
+        <div style="margin-top: 24px; padding: 18px 22px; background: rgba(255, 255, 255, 0.7); border-radius: var(--radius-md); border: 1px dashed #93c5fd;">
+          <strong style="font-size: 14px; color: #1e3a8a; display: block; margin-bottom: 6px;">
+            📌 What to Attach in Your Email:
+          </strong>
+          <ul style="font-size: 13px; color: #475569; line-height: 1.7; padding-left: 20px;">
+            <li>Full research paper in Microsoft Word (<code>.docx</code>) or PDF format</li>
+            <li>Author name(s), designation, department, and institutional affiliation</li>
+            <li>Corresponding author email address and contact telephone number</li>
+            <li>Short abstract (150–250 words) and 4–6 keywords</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- 1. Tab: Aim & Scope -->
-    <section class="journal-tab-panel active" id="tab-aim-scope">
+    <section class="journal-tab-panel" id="tab-aim-scope">
       <div class="card" style="margin-bottom: 24px;">
         <span class="dummy-tag">ℹ️ [Aim &amp; Scope Description — Customizable by Client]</span>
         <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 8px 0 12px;">

@@ -191,3 +191,22 @@ function handleContactSubmit(e) {
   e.target.reset();
 }
 
+/* ── Copy to Clipboard Helper ── */
+function copyToClipboard(text, btn) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      const originalText = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      btn.style.borderColor = '#16a34a';
+      btn.style.color = '#16a34a';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2500);
+    });
+  } else {
+    prompt('Copy email address:', text);
+  }
+}
+
