@@ -1,25 +1,40 @@
 // ASRF Research Platform - Client Scripts
-function toggleMobileNav() {
+function toggleMobileNav(e) {
+  if (!e && window.event) e = window.event;
+  if (e && typeof e.stopPropagation === 'function') {
+    e.stopPropagation();
+  }
   const menu = document.getElementById('mobileNavMenu');
   const btn = document.getElementById('mobileToggle');
   if (!menu || !btn) return;
-  if (menu.classList.contains('open')) {
-    menu.classList.remove('open');
-    btn.innerHTML = '<span class="hamburger-icon">☰</span>';
+
+  const isOpen = menu.classList.toggle('open');
+  const icon = btn.querySelector('.hamburger-icon');
+  if (icon) {
+    icon.textContent = isOpen ? '✕' : '☰';
   } else {
-    menu.classList.add('open');
-    btn.innerHTML = '<span class="hamburger-icon">✕</span>';
+    btn.textContent = isOpen ? '✕' : '☰';
   }
 }
 
-// Close mobile menu when clicking outside
+// Close mobile menu when clicking outside (safe from DOM detachment)
 document.addEventListener('click', function(e) {
   const menu = document.getElementById('mobileNavMenu');
   const btn = document.getElementById('mobileToggle');
-  if (menu && menu.classList.contains('open')) {
-    if (!menu.contains(e.target) && !btn.contains(e.target)) {
-      menu.classList.remove('open');
-      if (btn) btn.innerHTML = '<span class="hamburger-icon">☰</span>';
+  if (!menu || !menu.classList.contains('open')) return;
+
+  // Ignore clicks on toggle button or inside drawer
+  if (e.target.closest && (e.target.closest('#mobileToggle') || e.target.closest('#mobileNavMenu'))) {
+    return;
+  }
+
+  menu.classList.remove('open');
+  if (btn) {
+    const icon = btn.querySelector('.hamburger-icon');
+    if (icon) {
+      icon.textContent = '☰';
+    } else {
+      btn.textContent = '☰';
     }
   }
 });
