@@ -3,6 +3,7 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -60,7 +61,14 @@ func NewPageHandler(svc *services.ArticleService, cfg *config.Config) (*PageHand
 		},
 	}
 
-	tmpl, err := template.New("").Funcs(funcMap).ParseGlob(filepath.Join("templates", "*.html"))
+	tmplDir := "templates"
+	if _, err := os.Stat(tmplDir); os.IsNotExist(err) {
+		if _, err := os.Stat(filepath.Join("go-app", "templates")); err == nil {
+			tmplDir = filepath.Join("go-app", "templates")
+		}
+	}
+
+	tmpl, err := template.New("").Funcs(funcMap).ParseGlob(filepath.Join(tmplDir, "*.html"))
 	if err != nil {
 		return nil, err
 	}

@@ -67,10 +67,21 @@ func main() {
 		})
 	})
 
-	// Static Assets Routing
+	// Static Assets Routing (auto-detect root vs go-app subfolder)
 	workDir, _ := os.Getwd()
 	staticDir := filepath.Join(workDir, "static")
+	if _, err := os.Stat(staticDir); os.IsNotExist(err) {
+		if _, err := os.Stat(filepath.Join(workDir, "go-app", "static")); err == nil {
+			staticDir = filepath.Join(workDir, "go-app", "static")
+		}
+	}
+
 	uploadDir := filepath.Join(workDir, cfg.UploadDir)
+	if _, err := os.Stat(uploadDir); os.IsNotExist(err) {
+		if _, err := os.Stat(filepath.Join(workDir, "go-app", cfg.UploadDir)); err == nil {
+			uploadDir = filepath.Join(workDir, "go-app", cfg.UploadDir)
+		}
+	}
 
 	filesDir(r, "/static", http.Dir(staticDir))
 	filesDir(r, "/uploads", http.Dir(uploadDir))
