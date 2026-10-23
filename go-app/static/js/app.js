@@ -245,7 +245,7 @@ const I18N_DATA = {
     "Fast Track Review": "ഫാസ്റ്റ് ട്രാക്ക് റിവ്യൂ",
     "Initial decision within 3 weeks": "3 ആഴ്ചയ്ക്കുള്ളിൽ പ്രാഥമിക തീരുമാനം",
 
-    // Section Titles
+    // Section Titles & Client Core Pillars
     "Current Issue & Highlights": "നിലവിലെ ലക്കവും വിശേഷങ്ങളും",
     "Our Mission & Objectives": "ഞങ്ങളുടെ ലക്ഷ്യങ്ങളും ദൗത്യവും",
     "Upcoming Academic Events": "വരാനിരിക്കുന്ന അക്കാദമിക് ഇവന്റുകൾ",
@@ -254,6 +254,24 @@ const I18N_DATA = {
     "Foundation Image Gallery": "ഫൗണ്ടേഷൻ ഇമേജ് ഗ്യാലറി",
     "Get in Touch with Our Team": "ഞങ്ങളുടെ ടീമുമായി ബന്ധപ്പെടുക",
     "Contact & Secretariat": "ഓഫീസും ബന്ധപ്പെടാനുള്ള വിവരങ്ങളും",
+    "Aim and Scope of Analize Statistice Research Foundation (ASRF)": "അനലൈസ് സ്റ്റാറ്റിസ്റ്റിക്സ് റിസർച്ച് ഫൗണ്ടേഷന്റെ (ASRF) ലക്ഷ്യവും വ്യാപ്തിയും",
+    "Core Pillars of ASRF": "ASRF ന്റെ പ്രധാന സ്തംഭങ്ങൾ",
+    "Statistical Data Analytics": "സ്റ്റാറ്റിസ്റ്റിക്കൽ ഡാറ്റാ അനലിറ്റിക്സ്",
+    "Social Science and Development Research": "സോഷ്യൽ സയൻസ് & ഡെവലപ്‌മെന്റ് റിസർച്ച്",
+    "Public Health and Healthcare Research": "പബ്ലിക് ഹെൽത്ത് & ഹെൽത്ത് കെയർ റിസർച്ച്",
+    "Education and Educational Technology": "വിദ്യാഭ്യാസവും എഡ്യൂക്കേഷണൽ ടെക്നോളജിയും",
+    "Legal Research, Governance, and Public Policy": "നിയമ ഗവേഷണം, ഗവേണൻസ് & പബ്ലിക് പോളിസി",
+    "Economics, Technology, and Industry Research": "സാമ്പത്തിക ശാസ്ത്രം, സാങ്കേതികവിദ്യ & വ്യവസായ ഗവേഷണം",
+    "Environment, Climate, and Disaster Research": "പരിസ്ഥിതി, കാലാവസ്ഥ & ദുരന്ത നിവാരണ ഗവേഷണം",
+    "Research Training, Publications, and Knowledge Dissemination": "ഗവേഷണ പരിശീലനം, പ്രസിദ്ധീകരണങ്ങൾ & വിജ്ഞാന വ്യാപനം",
+    "Who We Are": "ഞങ്ങൾ ആരാണ്",
+    "Vision": "ദർശനം (Vision)",
+    "Mission": "ദൗത്യം (Mission)",
+    "President's Address": "പ്രസിഡന്റിന്റെ സന്ദേശം",
+    "Academic Advisory Board": "അക്കാദമിക് അഡ്വൈസറി ബോർഡ്",
+    "Research Consultant": "റിസർച്ച് കൺസൾട്ടന്റ്",
+    "Research Consultant (Publication)": "റിസർച്ച് കൺസൾട്ടന്റ് (പ്രസിദ്ധീകരണം)",
+    "Research Consultant (Events)": "റിസർച്ച് കൺസൾട്ടന്റ് (ഇവന്റുകൾ)",
 
     // Direct Email Submission
     "Direct Manuscript Submission via Email": "നേരിട്ടുള്ള ഇമെയിൽ വഴി മാനുസ്ക്രിപ്റ്റ് സമർപ്പിക്കുക",
